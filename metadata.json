@@ -1,0 +1,6 @@
+{
+  "name": "LED2TOY - Đạo Cụ & Nghệ Thuật LED Trình Diễn",
+  "description": "Website thương hiệu cá nhân của nghệ sĩ & nhà chế tác đạo cụ LED flow-art: LED poi, staff, hoop, fan, visual pixel props biểu diễn sự kiện và lễ hội.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

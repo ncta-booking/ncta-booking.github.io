@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-bg-dark: #0a0a0f;
+    --color-bg-card: #12121a;
+    --color-bg-card-hover: #191924;
+    --color-neon-magenta: #f00ac0;
+    --color-neon-violet: #8b2fe8;
+    --color-neon-orange: #ff8a00;
+    --color-neon-cyan: #00e5ff;
+    --color-neon-lime: #00ff88;
+  }
+
+  /*
+   * Mobile horizontal-overflow guard (iPhone/iPad portrait).
+   * Decorative absolutely-positioned glows use negative offsets and must
+   * never widen the page. This is the global safety net; each section that
+   * holds such glows must ALSO keep `overflow-hidden`. `clip` avoids turning
+   * the element into a scroll container (older browsers fall back to hidden).
+   * Do not remove without a replacement — see the "mobile no horizontal
+   * overflow" project rule.
+   */
+  html {
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  body {
+    font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+    background-color: #0a0a0f;
+    color: #e2e8f0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  }
+}
+
+/* Custom glowing effects */
+.glow-magenta {
+  box-shadow: 0 0 25px rgba(240, 10, 192, 0.4), 0 0 50px rgba(240, 10, 192, 0.15);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.4), 0 0 50px rgba(0, 229, 255, 0.15);
+}
+
+.glow-orange {
+  box-shadow: 0 0 25px rgba(255, 138, 0, 0.4), 0 0 50px rgba(255, 138, 0, 0.15);
+}
+
+.glow-violet {
+  box-shadow: 0 0 25px rgba(139, 47, 232, 0.4), 0 0 50px rgba(139, 47, 232, 0.15);
+}
+
+.glow-text-magenta {
+  text-shadow: 0 0 15px rgba(240, 10, 192, 0.7), 0 0 30px rgba(240, 10, 192, 0.4);
+}
+
+.glow-text-cyan {
+  text-shadow: 0 0 15px rgba(0, 229, 255, 0.7), 0 0 30px rgba(0, 229, 255, 0.4);
+}
+
+.glow-text-orange {
+  text-shadow: 0 0 15px rgba(255, 138, 0, 0.7), 0 0 30px rgba(255, 138, 0, 0.4);
+}
+
+.glow-border-rainbow {
+  background: linear-gradient(135deg, #f00ac0, #8b2fe8, #00e5ff, #ff8a00);
+}
+
+/* Smooth neon pulse animations */
+@keyframes neon-pulse {
+  0%, 100% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 15px rgba(240, 10, 192, 0.6));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 25px rgba(0, 229, 255, 0.9));
+  }
+}
+
+.animate-neon-pulse {
+  animation: neon-pulse 4s ease-in-out infinite;
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+/* Horizontal swipe strips (e.g. gear category selector): hide the scrollbar
+   but keep touch/trackpad scrolling. Used with `overflow-x-auto`. */
+.scrollbar-none {
+  -ms-overflow-style: none; /* IE / old Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Chrome / Safari / iOS */
+}
+
+/* Custom sleek scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #232332;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #f00ac0, #00e5ff);
+}
