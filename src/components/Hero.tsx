@@ -59,7 +59,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreGear }) => {
         </div>
 
         {/* Main Display Headline */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-black tracking-tight leading-[1.08] max-w-5xl">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-black tracking-tight leading-[1.15] max-w-5xl py-6 sm:py-8 lg:py-10">
           <span className="block text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400">
             {t('hero.titleLine1')}
           </span>
