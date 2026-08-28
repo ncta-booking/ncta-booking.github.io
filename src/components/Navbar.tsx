@@ -91,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
 
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5">
-                <span className="font-display font-black text-xl sm:text-2xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-purple-200 group-hover:glow-text-cyan transition-all">
+                <span className="brand-logo font-display font-black text-xl sm:text-2xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-purple-200 group-hover:glow-text-cyan transition-all">
                   N<span className="text-[#00e5ff]">C</span><span className="text-[#f00ac0]">TA</span>
                 </span>
               </div>

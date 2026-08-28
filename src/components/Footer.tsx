@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
                   <Zap className="w-5 h-5 text-[#00e5ff]" />
                 </div>
               </div>
-              <span className="font-display font-black text-2xl tracking-wider text-white">
+              <span className="brand-logo font-display font-black text-2xl tracking-wider text-white">
                 N<span className="text-[#00e5ff]">C</span><span className="text-[#f00ac0]">TA</span>
               </span>
             </div>

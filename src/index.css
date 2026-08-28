@@ -39,6 +39,19 @@
   h1, h2, h3, .font-display {
     font-family: 'Orbitron', 'Space Grotesk', sans-serif;
   }
+
+  /*
+   * Vietnamese display text: Orbitron / Space Grotesk have no real Vietnamese
+   * diacritics, so accented headings render unevenly (see the Hero title). When
+   * the document is Vietnamese (<html lang="vi">, kept in sync by
+   * LanguageContext), swap display text to Exo 2 — still geometric/techy but
+   * with full Vietnamese — falling back to the native-Vietnamese Be Vietnam Pro.
+   * Brand logos carry `.brand-logo` and are excluded so the mark stays in the
+   * sci-fi face across both languages. English keeps Orbitron / Space Grotesk.
+   */
+  html[lang="vi"] :is(h1, h2, h3, .font-display):not(.brand-logo) {
+    font-family: 'Exo 2', 'Be Vietnam Pro', system-ui, sans-serif;
+  }
 }
 
 /* Custom glowing effects */
