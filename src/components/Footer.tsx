@@ -25,7 +25,7 @@ export const Footer: React.FC = () => {
                 </div>
               </div>
               <span className="font-display font-black text-2xl tracking-wider text-white">
-                LED<span className="text-[#00e5ff]">2</span><span className="text-[#f00ac0]">TOY</span>
+                N<span className="text-[#00e5ff]">C</span><span className="text-[#f00ac0]">TA</span>
               </span>
             </div>
 

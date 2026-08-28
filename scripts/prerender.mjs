@@ -24,8 +24,18 @@ try {
   const indexFile = resolve(outDir, 'index.html');
   const template = readFileSync(indexFile, 'utf-8');
 
+  // Dev-mode SSR (this uses Vite's dev server) makes React emit
+  // <template data-msg="..." data-stck="..."></template> error annotations for
+  // Suspense/lazy boundaries (e.g. the lazy LightboxModal). Their stack leaks the
+  // absolute build path into the shipped HTML — strip them so production HTML is
+  // clean. These templates are dev-only and not needed for hydration.
+  const cleanHtml = appHtml.replace(
+    /<template\b[^>]*\bdata-(?:stck|msg)\b[^>]*><\/template>/gi,
+    '',
+  );
+
   // Inject the rendered app inside the #root container.
-  const out = template.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
+  const out = template.replace('<div id="root"></div>', `<div id="root">${cleanHtml}</div>`);
 
   writeFileSync(indexFile, out);
   console.log('[prerender] Static HTML injected into dist/index.html');
