@@ -216,7 +216,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService, 
                 </a>
 
                 <a
-                  href="mailto:contact@ncta.vn"
+                  href="mailto:nctavn@gmail.com"
                   className="flex items-center gap-4 p-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-[#f00ac0]/40 transition-all group"
                 >
                   <div className="w-11 h-11 rounded-xl bg-[#f00ac0]/10 border border-[#f00ac0]/30 flex items-center justify-center text-[#f00ac0] group-hover:scale-105 transition-transform shadow-[0_0_15px_rgba(240,10,192,0.3)]">
@@ -225,7 +225,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService, 
                   <div>
                     <span className="text-[11px] font-mono uppercase text-slate-400">{t('contact.emailLabel')}</span>
                     <p className="text-sm font-display font-bold text-white group-hover:text-[#f00ac0] transition-colors">
-                      booking@ncta.vn
+                      nctavn@gmail.com
                     </p>
                   </div>
                 </a>

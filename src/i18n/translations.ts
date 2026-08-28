@@ -153,7 +153,7 @@ const vi = {
     hotlineLabel: 'Hotline / Zalo Booking',
     emailLabel: 'Email Hợp Tác & Kịch Bản',
     studioLabel: 'Studio & Xưởng Chế Tác',
-    studioAddress: 'Quận 2, TP. Hồ Chí Minh & Tây Hồ, Hà Nội',
+    studioAddress: '7A/19 Thành Thái, Phường Diên Hồng, TP. Hồ Chí Minh',
     socialLabel: 'Theo dõi kênh mạng xã hội & video',
     domainLabel: 'Tên miền chính thức:',
     successTitle: 'Gửi Yêu Cầu Thành Công!',
@@ -254,7 +254,7 @@ const vi = {
       },
       {
         q: 'Khu vực phục vụ của NCTA ở đâu?',
-        a: 'NCTA phục vụ lưu diễn toàn quốc (TP. Hồ Chí Minh, Hà Nội, Đà Nẵng và các tỉnh thành) và quốc tế. Studio và xưởng chế tác đặt tại Quận 2, TP. Hồ Chí Minh và Tây Hồ, Hà Nội.',
+        a: 'NCTA phục vụ lưu diễn toàn quốc (TP. Hồ Chí Minh, Hà Nội, Đà Nẵng và các tỉnh thành) và quốc tế. Studio và xưởng chế tác đặt tại 7A/19 Thành Thái, Phường Diên Hồng, TP. Hồ Chí Minh.',
       },
       {
         q: 'Nên đặt lịch biểu diễn hoặc đặt đạo cụ trước bao lâu?',
@@ -427,7 +427,7 @@ const en: typeof vi = {
     hotlineLabel: 'Hotline / Zalo Booking',
     emailLabel: 'Collaboration & Script Email',
     studioLabel: 'Studio & Workshop',
-    studioAddress: 'District 2, Ho Chi Minh City & Tay Ho, Hanoi',
+    studioAddress: '7A/19 Thanh Thai, Dien Hong Ward, Ho Chi Minh City',
     socialLabel: 'Follow our social & video channels',
     domainLabel: 'Official domain:',
     successTitle: 'Request Sent Successfully!',
@@ -527,7 +527,7 @@ const en: typeof vi = {
       },
       {
         q: 'Which areas does NCTA serve?',
-        a: 'NCTA tours nationwide (Ho Chi Minh City, Hanoi, Da Nang and beyond) and internationally. The studio and workshop are based in District 2, Ho Chi Minh City and Tay Ho, Hanoi.',
+        a: 'NCTA tours nationwide (Ho Chi Minh City, Hanoi, Da Nang and beyond) and internationally. The studio and workshop are based at 7A/19 Thanh Thai, Dien Hong Ward, Ho Chi Minh City.',
       },
       {
         q: 'How far in advance should I book a show or a prop?',

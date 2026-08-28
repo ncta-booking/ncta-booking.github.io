@@ -116,7 +116,7 @@ export const Footer: React.FC = () => {
               Hotline: <span className="text-white font-mono font-semibold">0906 790 700</span>
             </p>
             <p className="text-xs text-slate-400 mb-4">
-              Email: <span className="text-[#00e5ff] font-mono">booking@ncta.vn</span>
+              Email: <span className="text-[#00e5ff] font-mono">nctavn@gmail.com</span>
             </p>
 
             <div className="flex items-center gap-2">
