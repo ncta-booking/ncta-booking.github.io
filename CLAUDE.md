@@ -1,6 +1,6 @@
-**![alt text](image.png)**# LED2TOY — project rules
+**![alt text](image.png)**# NCTA — project rules
 
-Single-page React 19 + TypeScript + Vite + Tailwind v4 marketing site (led2toy.com).
+Single-page React 19 + TypeScript + Vite + Tailwind v4 marketing site (ncta.vn).
 
 ## Responsive / mobile (must-follow)
 
@@ -33,10 +33,10 @@ portrait at iPhone (~375–430px) and iPad (~768–834px) widths.
 - Canvas `requestAnimationFrame` loops must NOT run unconditionally: throttle
   (~30fps for ambient FX), skip drawing when `document.hidden`, pause when the
   canvas is off-screen (IntersectionObserver), and bail entirely on
-  `prefers-reduced-motion`. See `FlowCanvas.tsx` / `InteractiveVisualizer.tsx`.
+  `prefers-reduced-motion`. See `FlowCanvas.tsx`.
 - Below-the-fold / interaction-only components are `React.lazy` + `Suspense`
-  (e.g. `InteractiveVisualizer`, `LightboxModal` in `App.tsx`). Give lazy
-  sections a sized placeholder (keep the `id` anchor) to avoid layout shift.
+  (e.g. `LightboxModal` in `App.tsx`). Give lazy sections a sized placeholder
+  (keep the `id` anchor) to avoid layout shift.
 - Images: `loading="lazy"` + `decoding="async"` on all non-LCP images; keep the
   aspect-ratio wrappers so there is no CLS. `preconnect` to external image/font
   hosts in `index.html`; load Google Fonts non-render-blocking (`media=print`

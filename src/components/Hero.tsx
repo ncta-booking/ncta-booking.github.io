@@ -53,7 +53,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreGear }) => {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00ff88]"></span>
           </span>
           <span className="text-xs font-mono tracking-wider uppercase text-slate-300">
-            {t('hero.badgeOfficial')} • <span className="text-[#00e5ff] font-semibold">led2toy.com</span>
+            {t('hero.badgeOfficial')} • <span className="text-[#00e5ff] font-semibold">ncta.vn</span>
           </span>
           <span className="text-purple-400 text-xs">• {t('hero.badgeStudio')}</span>
         </div>

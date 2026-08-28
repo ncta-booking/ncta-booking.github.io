@@ -132,3 +132,50 @@
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #f00ac0, #00e5ff);
 }
+
+/* ---------- FAQ accordion (native <details>, animated) ----------
+   Smoothly expands/collapses the answer via the modern ::details-content
+   pseudo-element. Browsers without support simply open instantly — still
+   fully functional and SEO / no-JS friendly. `interpolate-size` (inherited
+   from #faq) is what lets `block-size: auto` animate. */
+#faq {
+  interpolate-size: allow-keywords;
+}
+
+/* Hide Safari's default disclosure triangle (Chrome/FF handled by list-none). */
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item::details-content {
+  block-size: 0;
+  overflow: clip;
+  opacity: 0;
+  transition:
+    block-size 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease,
+    content-visibility 0.4s allow-discrete;
+}
+
+.faq-item[open]::details-content {
+  block-size: auto;
+  opacity: 1;
+}
+
+/* Subtle slide-in of the answer body as the card expands. */
+.faq-answer {
+  transform: translateY(-8px);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item[open] .faq-answer {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-item::details-content,
+  .faq-answer {
+    transition: none;
+    transform: none;
+  }
+}

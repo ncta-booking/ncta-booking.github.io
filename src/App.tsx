@@ -6,7 +6,9 @@ import { AboutSection } from './components/AboutSection';
 import { PerformancePortfolio } from './components/PerformancePortfolio';
 import { GearShowcase } from './components/GearShowcase';
 import { ServicesSection } from './components/ServicesSection';
+import { StatsSection } from './components/StatsSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
+import { FaqSection } from './components/FaqSection';
 import { PartnerLogos } from './components/PartnerLogos';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
@@ -14,9 +16,6 @@ import { LEDProp, PerformanceItem, ServiceItem } from './types';
 import { useI18n } from './i18n/LanguageContext';
 
 // Below-the-fold / interaction-only chunks — split out to shrink the initial JS.
-const InteractiveVisualizer = lazy(() =>
-  import('./components/InteractiveVisualizer').then((m) => ({ default: m.InteractiveVisualizer })),
-);
 const LightboxModal = lazy(() =>
   import('./components/LightboxModal').then((m) => ({ default: m.LightboxModal })),
 );
@@ -86,14 +85,14 @@ export default function App() {
           onInquireProp={handleInquireProp}
         />
 
-        {/* 6. Interactive Visualizer / LED Lab (lazy; placeholder keeps the
-            #simulator anchor + reserves height to avoid layout shift) */}
-        <Suspense fallback={<div id="simulator" className="min-h-[640px]" />}>
-          <InteractiveVisualizer />
-        </Suspense>
+        {/* 6. Achievements / Stats band (#stats) */}
+        <StatsSection />
 
         {/* 7. Services Section */}
         <ServicesSection onSelectService={handleSelectService} />
+
+        {/* 7b. FAQ (crawlable, JS-free) for rich results & keyword coverage */}
+        <FaqSection />
 
         {/* 8. Testimonials Section */}
         <TestimonialsSection />

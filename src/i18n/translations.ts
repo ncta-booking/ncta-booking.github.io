@@ -12,6 +12,7 @@ const vi = {
     performances: 'Trình Diễn',
     gear: 'Đạo Cụ LED',
     ledLab: 'LED Lab',
+    stats: 'Thành Tựu',
     services: 'Dịch Vụ',
     testimonials: 'Đánh Giá',
     contact: 'Liên Hệ',
@@ -56,7 +57,7 @@ const vi = {
     bioHeading: '"Biến bóng tối thành sân khấu ánh sáng vô tận"',
     bioP1Before: 'Chào mừng bạn đến với thế giới của ',
     bioP1After:
-      ' (led2toy.com). Tôi là một nghệ sĩ biểu diễn Flow Arts và người đam mê chế tác đạo cụ ánh sáng công nghệ cao, với hơn 8 năm gắn bó cùng các sân khấu lễ hội âm nhạc, sự kiện doanh nghiệp và các dự án nghệ thuật thị giác.',
+      ' (ncta.vn). Tôi là một nghệ sĩ biểu diễn Flow Arts và người đam mê chế tác đạo cụ ánh sáng công nghệ cao, với hơn 8 năm gắn bó cùng các sân khấu lễ hội âm nhạc, sự kiện doanh nghiệp và các dự án nghệ thuật thị giác.',
     bioP2Before:
       'Xuất phát từ tình yêu với chuyển động hình thể và mong muốn tạo nên những ảo ảnh quang học thôi miên trong đêm tối, tôi không ngừng tự nghiên cứu, lập trình và gia công các dòng ',
     bioP2And: 'và',
@@ -82,7 +83,7 @@ const vi = {
     titlePrefix: 'ĐẠO CỤ',
     titleHighlight: 'CHẾ TÁC CAO CẤP',
     subtitle:
-      'Các dòng đạo cụ Flow Art & Pixel Props công nghệ cao do LED2TOY trực tiếp thiết kế, cân chỉnh vật lý và lập trình firmware chuyên nghiệp.',
+      'Các dòng đạo cụ Flow Art & Pixel Props công nghệ cao do NCTA trực tiếp thiết kế, cân chỉnh vật lý và lập trình firmware chuyên nghiệp.',
     catAll: 'Tất Cả Đạo Cụ',
     catPoi: 'Visual Pixel Poi',
     catStaff: 'Dragon & Contact Staff',
@@ -93,7 +94,7 @@ const vi = {
     btnInquire: 'Tư Vấn Đặt',
     customTitle: 'Cần Đạo Cụ Custom Theo Bản Vẽ Kỹ Thuật Riêng?',
     customDesc:
-      'LED2TOY nhận thiết kế gậy rồng, quạt lụa, cánh thiên thần LED theo số đo và phong cách riêng của bạn.',
+      'NCTA nhận thiết kế gậy rồng, quạt lụa, cánh thiên thần LED theo số đo và phong cách riêng của bạn.',
     customBtn: 'Yêu Cầu Thiết Kế Custom',
   },
   performances: {
@@ -109,7 +110,7 @@ const vi = {
     catVisualArt: 'Nghệ Thuật Thị Giác',
     bannerTitle: 'Bạn Muốn Mang Màn Trình Diễn Này Tới Sự Kiện Của Mình?',
     bannerDesc:
-      'LED2TOY nhận biểu diễn độc quyền, thiết kế kịch bản visual riêng và đồng bộ logo thương hiệu.',
+      'NCTA nhận biểu diễn độc quyền, thiết kế kịch bản visual riêng và đồng bộ logo thương hiệu.',
     bannerBtn: 'Nhận Kịch Bản & Báo Giá',
   },
   services: {
@@ -118,21 +119,21 @@ const vi = {
     titleHighlight: 'ÁNH SÁNG TOÀN DIỆN',
     subtitle:
       'Từ những màn trình diễn mở màn bùng nổ đến gia công đạo cụ độc bản và đào tạo thế hệ nghệ sĩ trẻ.',
-    cardLabel: 'LED2TOY SERVICE',
+    cardLabel: 'NCTA SERVICE',
   },
   testimonials: {
     badge: 'Đối Tác & Khách Hàng',
     titlePrefix: 'ĐÁNH GIÁ',
     titleHighlight: 'TỪ ĐỐI TÁC',
     subtitle:
-      'Cảm nhận thực tế từ các đạo diễn sự kiện, ban tổ chức đại nhạc hội và những nghệ sĩ flow art sở hữu đạo cụ LED2TOY.',
+      'Cảm nhận thực tế từ các đạo diễn sự kiện, ban tổ chức đại nhạc hội và những nghệ sĩ flow art sở hữu đạo cụ NCTA.',
   },
   visualizer: {
     badge: 'Interactive LED Lab',
     titlePrefix: 'TRÌNH GIẢ LẬP',
     titleHighlight: 'HIỆU ỨNG ÁNH SÁNG',
     subtitle:
-      'Tự do thử nghiệm các chế độ ánh sáng LED, tốc độ xoay và dải màu neon đặc trưng của các dòng đạo cụ LED2TOY trong thời gian thực.',
+      'Tự do thử nghiệm các chế độ ánh sáng LED, tốc độ xoay và dải màu neon đặc trưng của các dòng đạo cụ NCTA trong thời gian thực.',
     resetTitle: 'Reset góc quay',
     trailViewport: 'Vệt sáng',
     step1: '1. Chọn Loại Đạo Cụ',
@@ -175,7 +176,7 @@ const vi = {
     placeholderDate: 'VD: 20/09/2026 hoặc Cuối tháng này',
     labelNotes: 'Chi Tiết Yêu Cầu / Nội Dung Cần Tư Vấn',
     placeholderNotes:
-      'Hãy cho LED2TOY biết địa điểm, thời lượng mong muốn hoặc loại đạo cụ LED bạn muốn đặt chế tác...',
+      'Hãy cho NCTA biết địa điểm, thời lượng mong muốn hoặc loại đạo cụ LED bạn muốn đặt chế tác...',
     submitting: 'Đang gửi yêu cầu...',
     submit: 'Gửi Yêu Cầu Đặt Lịch / Báo Giá Ngay',
     privacy: '🔒 Thông tin của bạn được bảo mật tuyệt đối và chỉ dùng để trao đổi công việc.',
@@ -224,6 +225,58 @@ const vi = {
     studioTag: 'Flow Arts & Visual Prop Studio',
     backToTop: 'Lên đầu trang',
   },
+  faq: {
+    badge: 'Câu Hỏi Thường Gặp',
+    titlePrefix: 'HỎI ĐÁP',
+    titleHighlight: 'NHANH',
+    subtitle:
+      'Những thắc mắc phổ biến về biểu diễn Flow Art, đạo cụ LED và dịch vụ của NCTA.',
+    items: [
+      {
+        q: 'NCTA là gì và chuyên về lĩnh vực nào?',
+        a: 'NCTA là thương hiệu cá nhân của nghệ sĩ biểu diễn Flow Art và nhà chế tác đạo cụ LED công nghệ cao tại Việt Nam. Chúng tôi chuyên biểu diễn ánh sáng nghệ thuật, gia công đạo cụ LED (Visual Poi, Dragon Staff, LED Hoop, Fans, Clubs) và đào tạo flow art cho sự kiện, lễ hội, tiệc cưới và đêm diễn.',
+      },
+      {
+        q: 'Đạo cụ LED (Poi, Staff, Hoop) là gì?',
+        a: 'Đạo cụ LED là các thiết bị biểu diễn Flow Art tích hợp dải đèn LED độ phân giải cao, cảm biến chuyển động và vi xử lý lập trình sẵn. Khi xoay, chúng tạo ra các vệt sáng và hình ảnh 3D lơ lửng trong không trung. Phổ biến nhất là Poi (quả cầu lồng), Dragon Staff (gậy rồng), LED Hoop (vòng), Fans (quạt lụa) và Clubs (gậy tạ).',
+      },
+      {
+        q: 'NCTA có nhận biểu diễn sự kiện, tiệc cưới và lễ hội không?',
+        a: 'Có. NCTA nhận biểu diễn độc quyền cho sự kiện doanh nghiệp, Gala, tiệc cưới, đại nhạc hội, ra mắt thương hiệu và triển lãm nghệ thuật. Mỗi tiết mục được biên đạo đồng bộ với nhạc và thông điệp sự kiện, có thể hiển thị logo thương hiệu trực tiếp trên đạo cụ.',
+      },
+      {
+        q: 'Chi phí thuê biểu diễn hoặc đặt chế tác đạo cụ LED là bao nhiêu?',
+        a: 'Chi phí phụ thuộc vào loại hình (biểu diễn / thuê thiết bị / gia công custom), số lượng diễn viên, thời lượng và địa điểm. Vui lòng gửi yêu cầu qua trang Liên Hệ để nhận kịch bản và báo giá chi tiết trong vòng 2 giờ.',
+      },
+      {
+        q: 'Có bán hoặc gia công đạo cụ LED theo yêu cầu (custom) không?',
+        a: 'Có. NCTA nhận thiết kế và gia công đạo cụ LED theo bản vẽ kỹ thuật riêng: gậy rồng, quạt lụa phát sáng, cánh thiên thần LED, Poi và Hoop. Sản phẩm được cân chỉnh vật lý, lập trình firmware và bảo hành 12 tháng kèm hỗ trợ kỹ thuật trọn đời.',
+      },
+      {
+        q: 'Khu vực phục vụ của NCTA ở đâu?',
+        a: 'NCTA phục vụ lưu diễn toàn quốc (TP. Hồ Chí Minh, Hà Nội, Đà Nẵng và các tỉnh thành) và quốc tế. Studio và xưởng chế tác đặt tại Quận 2, TP. Hồ Chí Minh và Tây Hồ, Hà Nội.',
+      },
+      {
+        q: 'Nên đặt lịch biểu diễn hoặc đặt đạo cụ trước bao lâu?',
+        a: 'Để đảm bảo lịch trình và thời gian gia công, bạn nên đặt trước từ 2–4 tuần đối với biểu diễn và 4–8 tuần đối với đạo cụ LED custom. Với các sự kiện gấp, hãy liên hệ Hotline / Zalo để được hỗ trợ ưu tiên.',
+      },
+    ],
+  },
+  stats: {
+    badge: 'Thành Tựu',
+    titlePrefix: 'Con số',
+    titleHighlight: 'biết nói',
+    subtitle:
+      'Hành trình ánh sáng của NCTA được đo bằng những sân khấu, đối tác và khoảnh khắc bùng nổ đã đi qua.',
+    festivalsLabel: 'Lễ hội & sân khấu',
+    festivalsCaption: 'Sự kiện lớn trong nước & quốc tế',
+    partnersLabel: 'Đối tác & thương hiệu',
+    partnersCaption: 'Tin tưởng đồng hành cùng NCTA',
+    studentsLabel: 'Học viên Flow Art',
+    studentsCaption: 'Được đào tạo qua các workshop',
+    viewsLabel: 'Lượt xem mạng xã hội',
+    viewsCaption: 'Trên YouTube, TikTok & Instagram',
+  },
 };
 
 const en: typeof vi = {
@@ -233,6 +286,7 @@ const en: typeof vi = {
     performances: 'Performances',
     gear: 'LED Gear',
     ledLab: 'LED Lab',
+    stats: 'Achievements',
     services: 'Services',
     testimonials: 'Reviews',
     contact: 'Contact',
@@ -277,7 +331,7 @@ const en: typeof vi = {
     bioHeading: '"Turning darkness into an endless stage of light"',
     bioP1Before: 'Welcome to the world of ',
     bioP1After:
-      " (led2toy.com). I'm a Flow Arts performer and a passionate maker of high-tech light props, with over 8 years on music-festival stages, corporate events and visual-art projects.",
+      " (ncta.vn). I'm a Flow Arts performer and a passionate maker of high-tech light props, with over 8 years on music-festival stages, corporate events and visual-art projects.",
     bioP2Before:
       'Born from a love of body movement and a desire to create hypnotic optical illusions in the dark, I constantly research, program and craft my own ',
     bioP2And: 'and',
@@ -303,7 +357,7 @@ const en: typeof vi = {
     titlePrefix: 'HANDCRAFTED',
     titleHighlight: 'PREMIUM GEAR',
     subtitle:
-      'High-tech Flow Art & Pixel Prop lines designed, physically balanced and firmware-programmed in-house by LED2TOY.',
+      'High-tech Flow Art & Pixel Prop lines designed, physically balanced and firmware-programmed in-house by NCTA.',
     catAll: 'All Gear',
     catPoi: 'Visual Pixel Poi',
     catStaff: 'Dragon & Contact Staff',
@@ -314,7 +368,7 @@ const en: typeof vi = {
     btnInquire: 'Enquire',
     customTitle: 'Need Custom Gear From Your Own Technical Drawings?',
     customDesc:
-      'LED2TOY builds dragon staffs, silk fans and LED angel wings to your measurements and style.',
+      'NCTA builds dragon staffs, silk fans and LED angel wings to your measurements and style.',
     customBtn: 'Request Custom Design',
   },
   performances: {
@@ -330,7 +384,7 @@ const en: typeof vi = {
     catVisualArt: 'Visual Art',
     bannerTitle: 'Want to Bring This Show to Your Own Event?',
     bannerDesc:
-      'LED2TOY offers exclusive performances, custom visual scripts and brand-logo syncing.',
+      'NCTA offers exclusive performances, custom visual scripts and brand-logo syncing.',
     bannerBtn: 'Get a Script & Quote',
   },
   services: {
@@ -339,21 +393,21 @@ const en: typeof vi = {
     titleHighlight: 'LIGHTING SOLUTIONS',
     subtitle:
       'From explosive opening acts to one-of-a-kind prop building and training the next generation of artists.',
-    cardLabel: 'LED2TOY SERVICE',
+    cardLabel: 'NCTA SERVICE',
   },
   testimonials: {
     badge: 'Partners & Clients',
     titlePrefix: 'PARTNER',
     titleHighlight: 'REVIEWS',
     subtitle:
-      'Real feedback from event directors, festival organizers and flow-art artists who own LED2TOY gear.',
+      'Real feedback from event directors, festival organizers and flow-art artists who own NCTA gear.',
   },
   visualizer: {
     badge: 'Interactive LED Lab',
     titlePrefix: 'LIGHT EFFECT',
     titleHighlight: 'SIMULATOR',
     subtitle:
-      'Freely experiment with LED lighting modes, spin speed and the signature neon palettes of LED2TOY gear in real time.',
+      'Freely experiment with LED lighting modes, spin speed and the signature neon palettes of NCTA gear in real time.',
     resetTitle: 'Reset rotation',
     trailViewport: 'Trail',
     step1: '1. Choose Prop Type',
@@ -396,7 +450,7 @@ const en: typeof vi = {
     placeholderDate: 'e.g. 20/09/2026 or end of this month',
     labelNotes: 'Request Details / What You Need',
     placeholderNotes:
-      'Tell LED2TOY the location, desired duration or the type of LED gear you want built...',
+      'Tell NCTA the location, desired duration or the type of LED gear you want built...',
     submitting: 'Sending request...',
     submit: 'Send Booking / Quote Request',
     privacy: '🔒 Your information is kept strictly confidential and used only for work communication.',
@@ -443,6 +497,58 @@ const en: typeof vi = {
     rights: 'All Rights Reserved.',
     studioTag: 'Flow Arts & Visual Prop Studio',
     backToTop: 'Back to top',
+  },
+  faq: {
+    badge: 'Frequently Asked Questions',
+    titlePrefix: 'QUICK',
+    titleHighlight: 'FAQ',
+    subtitle:
+      'Common questions about Flow Art performances, LED props and NCTA services.',
+    items: [
+      {
+        q: 'What is NCTA and what does it specialize in?',
+        a: 'NCTA is the personal brand of a Vietnamese Flow Art performer and high-tech LED prop maker. We specialize in artistic light performances, custom-built LED props (Visual Poi, Dragon Staff, LED Hoop, Fans, Clubs) and flow-art training for events, festivals, weddings and stage shows.',
+      },
+      {
+        q: 'What are LED props (Poi, Staff, Hoop)?',
+        a: 'LED props are Flow Art performance tools fitted with high-resolution LED strips, motion sensors and pre-programmed microcontrollers. When spun, they paint glowing trails and 3D images suspended in mid-air. The most popular are Poi (pod balls), Dragon Staff, LED Hoop, Silk Fans and Juggling Clubs.',
+      },
+      {
+        q: 'Does NCTA perform at events, weddings and festivals?',
+        a: 'Yes. NCTA offers exclusive performances for corporate events, galas, weddings, major festivals, brand launches and art exhibitions. Every act is choreographed to the music and event message, and can display the brand logo directly on the props.',
+      },
+      {
+        q: 'How much does it cost to book a show or order a custom prop?',
+        a: 'Pricing depends on the service (performance / equipment rental / custom build), number of performers, duration and location. Please send a request via the Contact page to receive a script and a detailed quote within 2 hours.',
+      },
+      {
+        q: 'Do you sell or build custom LED props on request?',
+        a: 'Yes. NCTA designs and builds LED props from your own technical drawings: dragon staffs, glowing silk fans, LED angel wings, Poi and Hoops. Each piece is physically balanced, firmware-programmed, comes with a 12-month warranty and lifetime technical support.',
+      },
+      {
+        q: 'Which areas does NCTA serve?',
+        a: 'NCTA tours nationwide (Ho Chi Minh City, Hanoi, Da Nang and beyond) and internationally. The studio and workshop are based in District 2, Ho Chi Minh City and Tay Ho, Hanoi.',
+      },
+      {
+        q: 'How far in advance should I book a show or a prop?',
+        a: 'To secure scheduling and build time, book 2–4 weeks ahead for performances and 4–8 weeks ahead for custom LED props. For urgent events, contact the Hotline / Zalo for priority support.',
+      },
+    ],
+  },
+  stats: {
+    badge: 'Achievements',
+    titlePrefix: 'Numbers that',
+    titleHighlight: 'speak',
+    subtitle:
+      'The NCTA journey in light is measured by the stages, partners and explosive moments along the way.',
+    festivalsLabel: 'Festivals & stages',
+    festivalsCaption: 'Major events at home & abroad',
+    partnersLabel: 'Partners & brands',
+    partnersCaption: 'Trusting NCTA on stage',
+    studentsLabel: 'Flow Art students',
+    studentsCaption: 'Trained through our workshops',
+    viewsLabel: 'Social views',
+    viewsCaption: 'Across YouTube, TikTok & Instagram',
   },
 };
 

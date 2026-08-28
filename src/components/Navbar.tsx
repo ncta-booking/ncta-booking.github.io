@@ -17,7 +17,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 40);
 
-      const sections = ['hero', 'about', 'performances', 'gear', 'simulator', 'services', 'testimonials', 'contact'];
+      const sections = ['hero', 'about', 'performances', 'gear', 'stats', 'services', 'testimonials', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -42,7 +42,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
     { href: '#about', label: t('nav.about'), id: 'about' },
     { href: '#performances', label: t('nav.performances'), id: 'performances' },
     { href: '#gear', label: t('nav.gear'), id: 'gear' },
-    { href: '#simulator', label: t('nav.ledLab'), id: 'simulator', isBadge: true },
+    { href: '#stats', label: t('nav.stats'), id: 'stats' },
     { href: '#services', label: t('nav.services'), id: 'services' },
     { href: '#testimonials', label: t('nav.testimonials'), id: 'testimonials' },
     { href: '#contact', label: t('nav.contact'), id: 'contact' },
@@ -62,10 +62,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
       id="main-navbar"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#0a0a0f]/90 backdrop-blur-xl border-b border-purple-500/20 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.8)]'
+          ? 'bg-[#0a0a0f]/90 backdrop-blur-xl py-3 shadow-[0_10px_30px_rgba(0,0,0,0.8)]'
           : 'bg-transparent py-5'
       }`}
     >
+      {/* Soft neon hairline in place of a hard full-width border — fades to
+          transparent at both edges so it reads as a subtle accent, not a solid
+          white bar flashing in/out on scroll. Remove this <div> for zero line. */}
+      {isScrolled && (
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
+      )}
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-4">
         {/* Left: Brand Logo */}
         <div className="flex-1 flex justify-start min-w-0">
@@ -89,7 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
                 </span>
               </div>
               <span className="text-[10px] tracking-widest text-slate-400 font-mono -mt-1 group-hover:text-[#00e5ff] transition-colors">
-                led2toy.com
+                ncta.vn
               </span>
             </div>
           </a>
@@ -107,15 +114,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
                 className={`relative px-3.5 py-1.5 text-xs font-medium tracking-wide rounded-full transition-all duration-300 flex items-center gap-1 ${
                   isActive
                     ? 'text-white bg-gradient-to-r from-[#f00ac0]/30 to-[#8b2fe8]/40 border border-[#f00ac0]/50 shadow-[0_0_15px_rgba(240,10,192,0.3)]'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    : 'text-slate-300 border border-transparent hover:text-white hover:bg-white/5'
                 }`}
               >
                 {link.label}
-                {link.isBadge && (
-                  <span className="px-1.5 py-0.2 text-[9px] font-bold uppercase tracking-wider bg-gradient-to-r from-[#00e5ff] to-[#00ff88] text-black rounded-full shadow-[0_0_8px_rgba(0,229,255,0.6)]">
-                    {t('nav.live')}
-                  </span>
-                )}
               </a>
             );
           })}
@@ -154,18 +156,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
                   className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                     isActive
                       ? 'bg-gradient-to-r from-[#f00ac0]/20 to-[#8b2fe8]/30 text-white border border-[#f00ac0]/40'
-                      : 'text-slate-300 hover:text-white hover:bg-white/5'
+                      : 'text-slate-300 border border-transparent hover:text-white hover:bg-white/5'
                   }`}
                 >
                   <span className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff]" />
                     {link.label}
                   </span>
-                  {link.isBadge && (
-                    <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider bg-[#00e5ff] text-black rounded-full">
-                      {t('nav.simulateBadge')}
-                    </span>
-                  )}
                 </a>
               );
             })}
@@ -185,7 +182,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
               <div className="flex items-center justify-center gap-4 text-xs text-slate-400 pt-2 font-mono">
                 <span>Zalo: 0906 790 700</span>
                 <span>•</span>
-                <span>led2toy.com</span>
+                <span>ncta.vn</span>
               </div>
             </div>
           </div>

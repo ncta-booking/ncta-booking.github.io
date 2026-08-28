@@ -35,7 +35,7 @@ export const Footer: React.FC = () => {
 
             <div className="flex items-center gap-2 text-xs font-mono text-[#00e5ff]">
               <Globe className="w-4 h-4" />
-              <span>Official Domain: led2toy.com</span>
+              <span>Official Domain: ncta.vn</span>
             </div>
           </div>
 
@@ -66,8 +66,8 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#simulator" className="hover:text-[#00e5ff] transition-colors">
-                  {t('footer.linkSimulator')}
+                <a href="#stats" className="hover:text-[#00e5ff] transition-colors">
+                  {t('nav.stats')}
                 </a>
               </li>
             </ul>
@@ -116,7 +116,7 @@ export const Footer: React.FC = () => {
               Hotline: <span className="text-white font-mono font-semibold">0906 790 700</span>
             </p>
             <p className="text-xs text-slate-400 mb-4">
-              Email: <span className="text-[#00e5ff] font-mono">booking@led2toy.com</span>
+              Email: <span className="text-[#00e5ff] font-mono">booking@ncta.vn</span>
             </p>
 
             <div className="flex items-center gap-2">
@@ -144,7 +144,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar: Copyright & GitHub Pages CNAME indicator */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
           <div className="flex items-center gap-2 text-slate-400">
-            <span>© {new Date().getFullYear()} LED2TOY (led2toy.com). {t('footer.rights')}</span>
+            <span>© {new Date().getFullYear()} NCTA (ncta.vn). {t('footer.rights')}</span>
             <span className="hidden sm:inline">•</span>
             <span className="text-purple-400 hidden sm:inline">{t('footer.studioTag')}</span>
           </div>

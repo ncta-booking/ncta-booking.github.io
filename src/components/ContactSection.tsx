@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Send, PhoneCall, Mail, MapPin, Sparkles, CheckCircle2, MessageSquare, MessageCircle, Instagram, Youtube, Facebook, Video, Share2 } from 'lucide-react';
 import { useI18n } from '../i18n/LanguageContext';
 
-// LED2TOY hotline — the same number is used for calls, WhatsApp and Zalo.
+// NCTA hotline — the same number is used for calls, WhatsApp and Zalo.
 const HOTLINE_LOCAL = '0906790700'; // display / tel / Zalo
 const HOTLINE_INTL = '84906790700'; // WhatsApp requires country code, no leading 0
 
@@ -76,7 +76,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService, 
   // Assemble the form into a readable message for WhatsApp / Zalo.
   const buildMessage = (): string => {
     return [
-      `🎇 LED2TOY — ${t('contact.badge')}`,
+      `🎇 NCTA — ${t('contact.badge')}`,
       `• ${t('contact.labelName')}: ${formData.name}`,
       `• ${t('contact.labelPhone')}: ${formData.phone}`,
       formData.email ? `• ${t('contact.labelEmail')}: ${formData.email}` : '',
@@ -115,8 +115,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService, 
 
     const payload: Record<string, string> = {
       access_key: WEB3FORMS_KEY,
-      subject: `LED2TOY — ${serviceTypeLabel()} — ${formData.name}`,
-      from_name: 'LED2TOY Website',
+      subject: `NCTA — ${serviceTypeLabel()} — ${formData.name}`,
+      from_name: 'NCTA Website',
       name: formData.name,
       phone_zalo: formData.phone,
       service: serviceTypeLabel(),
@@ -176,7 +176,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService, 
             <span>{t('contact.badge')}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-display font-black tracking-tight text-white">
-            {t('contact.titlePrefix')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00e5ff] via-[#8b2fe8] to-[#f00ac0]">LED2TOY</span>
+            {t('contact.titlePrefix')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00e5ff] via-[#8b2fe8] to-[#f00ac0]">NCTA</span>
           </h2>
           <p className="mt-3 text-slate-400 max-w-2xl text-sm sm:text-base">
             {t('contact.subtitle')}
@@ -216,7 +216,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService, 
                 </a>
 
                 <a
-                  href="mailto:contact@led2toy.com"
+                  href="mailto:contact@ncta.vn"
                   className="flex items-center gap-4 p-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-[#f00ac0]/40 transition-all group"
                 >
                   <div className="w-11 h-11 rounded-xl bg-[#f00ac0]/10 border border-[#f00ac0]/30 flex items-center justify-center text-[#f00ac0] group-hover:scale-105 transition-transform shadow-[0_0_15px_rgba(240,10,192,0.3)]">
@@ -225,7 +225,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService, 
                   <div>
                     <span className="text-[11px] font-mono uppercase text-slate-400">{t('contact.emailLabel')}</span>
                     <p className="text-sm font-display font-bold text-white group-hover:text-[#f00ac0] transition-colors">
-                      booking@led2toy.com
+                      booking@ncta.vn
                     </p>
                   </div>
                 </a>
@@ -278,7 +278,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService, 
             {/* Quick Note about Domain */}
             <div className="p-4 rounded-2xl bg-purple-950/20 border border-purple-500/20 text-xs text-slate-300 flex items-center justify-between">
               <span className="font-mono text-slate-400">{t('contact.domainLabel')}</span>
-              <span className="font-mono font-bold text-[#00e5ff]">https://led2toy.com</span>
+              <span className="font-mono font-bold text-[#00e5ff]">https://ncta.vn</span>
             </div>
 
           </div>
@@ -296,7 +296,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService, 
                     {t('contact.successTitle')}
                   </h3>
                   <p className="text-sm text-slate-300 max-w-md leading-relaxed">
-                    {t('contact.successBefore')}<strong>LED2TOY</strong>{t('contact.successAfter')}
+                    {t('contact.successBefore')}<strong>NCTA</strong>{t('contact.successAfter')}
                   </p>
                   <button
                     onClick={() => {

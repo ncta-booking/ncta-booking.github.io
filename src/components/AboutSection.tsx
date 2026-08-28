@@ -50,7 +50,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => 
             <span>{t('about.badge')}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-display font-black tracking-tight text-white">
-            {t('about.titlePrefix')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f00ac0] via-[#8b2fe8] to-[#00e5ff]">LED2TOY</span>
+            {t('about.titlePrefix')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f00ac0] via-[#8b2fe8] to-[#00e5ff]">NCTA</span>
           </h2>
           <p className="mt-3 text-slate-400 max-w-2xl text-sm sm:text-base">
             {t('about.subtitle')}
@@ -82,7 +82,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => 
                 <div className="absolute bottom-5 left-5 right-5 p-4 rounded-xl bg-[#12121e]/85 backdrop-blur-md border border-white/10">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h4 className="text-white font-display font-bold text-base">LED2TOY Studio</h4>
+                      <h4 className="text-white font-display font-bold text-base">NCTA Studio</h4>
                       <p className="text-[#00e5ff] text-xs font-mono">{t('about.imgRole')}</p>
                     </div>
                     <span className="px-2.5 py-1 rounded-full bg-[#00ff88]/20 border border-[#00ff88]/40 text-[#00ff88] text-[10px] font-mono font-bold uppercase">
@@ -108,7 +108,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => 
               </h3>
 
               <p>
-                {t('about.bioP1Before')}<strong className="text-white font-semibold">LED2TOY</strong>{t('about.bioP1After')}
+                {t('about.bioP1Before')}<strong className="text-white font-semibold">NCTA</strong>{t('about.bioP1After')}
               </p>
 
               <p>

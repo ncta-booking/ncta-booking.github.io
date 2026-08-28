@@ -11,9 +11,11 @@ interface I18nContextValue {
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
-/** Read the persisted language, falling back to browser detection. */
+/** Read the persisted language, falling back to the `?lang=` URL param, then browser detection. */
 function getInitialLang(): Lang {
   if (typeof window !== 'undefined') {
+    const fromQuery = new URLSearchParams(window.location.search).get('lang');
+    if (fromQuery === 'vi' || fromQuery === 'en') return fromQuery;
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (stored === 'vi' || stored === 'en') return stored;
   }

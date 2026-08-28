@@ -1,4 +1,4 @@
-// Central i18n configuration for LED2TOY.
+// Central i18n configuration for NCTA.
 // To add a new language later (e.g. Chinese): add its code to the `Lang`
 // union, flip `enabled: true` in LANGUAGES, then fill the matching branches
 // in `translations.ts` and the localized data in `data/mockData.ts`.
@@ -6,7 +6,7 @@
 export type Lang = 'vi' | 'en'; // future: | 'zh'
 
 export const DEFAULT_LANG: Lang = 'vi';
-export const STORAGE_KEY = 'led2toy-lang';
+export const STORAGE_KEY = 'ncta-lang';
 
 export interface LanguageMeta {
   /** BCP-47-ish language code used everywhere in the app. */

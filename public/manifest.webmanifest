@@ -1,0 +1,18 @@
+{
+  "name": "NCTA — Nghệ Thuật & Đạo Cụ LED Trình Diễn",
+  "short_name": "NCTA",
+  "description": "Nghệ sĩ biểu diễn Flow Art & nhà chế tác đạo cụ LED công nghệ cao cho sự kiện, lễ hội và đêm diễn ánh sáng.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#0a0a0f",
+  "lang": "vi",
+  "icons": [
+    {
+      "src": "/og-image.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

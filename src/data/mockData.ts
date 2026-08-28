@@ -118,8 +118,8 @@ const RAW_PROPS: RawProp[] = [
       en: 'Draw logos & animated images live in the spin space',
     },
     description: {
-      vi: 'Dòng Visual Poi công nghệ tiên tiến nhất của LED2TOY với 160 điểm LED RGB siêu sáng mỗi bên. Hỗ trợ hiển thị logo doanh nghiệp, đồ họa 3D, chân dung và hiệu ứng âm nhạc đồng bộ micro-second.',
-      en: "LED2TOY's most advanced Visual Poi line with 160 ultra-bright RGB LED points per side. Displays corporate logos, 3D graphics, portraits and micro-second music-synced effects.",
+      vi: 'Dòng Visual Poi công nghệ tiên tiến nhất của NCTA với 160 điểm LED RGB siêu sáng mỗi bên. Hỗ trợ hiển thị logo doanh nghiệp, đồ họa 3D, chân dung và hiệu ứng âm nhạc đồng bộ micro-second.',
+      en: "NCTA's most advanced Visual Poi line with 160 ultra-bright RGB LED points per side. Displays corporate logos, 3D graphics, portraits and micro-second music-synced effects.",
     },
     image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1000&auto=format&fit=crop',
     accentColor: '#f00ac0',
@@ -730,8 +730,8 @@ const RAW_TESTIMONIALS: RawTestimonial[] = [
     organization: 'Apex Media & Entertainment',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop',
     content: {
-      vi: 'Màn xuất hiện của LED2TOY tại đêm Gala VinFast thực sự khiến cả khán phòng vỡ òa. Khi logo thương hiệu hiện lên sắc nét giữa các vòng xoay Poi tốc độ cao, toàn bộ ban lãnh đạo đều đứng dậy vỗ tay!',
-      en: "LED2TOY's appearance at the VinFast gala brought the whole room to its feet. When the brand logo appeared crisp amid high-speed Poi spins, the entire leadership team stood and applauded!",
+      vi: 'Màn xuất hiện của NCTA tại đêm Gala VinFast thực sự khiến cả khán phòng vỡ òa. Khi logo thương hiệu hiện lên sắc nét giữa các vòng xoay Poi tốc độ cao, toàn bộ ban lãnh đạo đều đứng dậy vỗ tay!',
+      en: "NCTA's appearance at the VinFast gala brought the whole room to its feet. When the brand logo appeared crisp amid high-speed Poi spins, the entire leadership team stood and applauded!",
     },
     rating: 5,
     event: { vi: 'VinFast Corporate Gala', en: 'VinFast Corporate Gala' },
@@ -744,8 +744,8 @@ const RAW_TESTIMONIALS: RawTestimonial[] = [
     organization: 'Ravolution EDM Festival',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop',
     content: {
-      vi: 'Đạo cụ LED của LED2TOY rất sáng và bền. Dù biểu diễn cuồng nhiệt trên sân khấu lớn với độ ẩm cao, thiết bị vẫn hoạt động hoàn hảo suốt 4 tiếng. Đây là đối tác biểu diễn ánh sáng số 1 mà chúng tôi luôn tin tưởng.',
-      en: "LED2TOY's props are bright and tough. Even through an intense set on a big, humid stage, the gear ran flawlessly for 4 hours. They are the No.1 light-performance partner we always trust.",
+      vi: 'Đạo cụ LED của NCTA rất sáng và bền. Dù biểu diễn cuồng nhiệt trên sân khấu lớn với độ ẩm cao, thiết bị vẫn hoạt động hoàn hảo suốt 4 tiếng. Đây là đối tác biểu diễn ánh sáng số 1 mà chúng tôi luôn tin tưởng.',
+      en: "NCTA's props are bright and tough. Even through an intense set on a big, humid stage, the gear ran flawlessly for 4 hours. They are the No.1 light-performance partner we always trust.",
     },
     rating: 5,
     event: { vi: 'Ravolution Arena', en: 'Ravolution Arena' },
@@ -758,8 +758,8 @@ const RAW_TESTIMONIALS: RawTestimonial[] = [
     organization: 'Hà Nội Flow Community',
     avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=200&auto=format&fit=crop',
     content: {
-      vi: 'Mình đặt cây Dragon Staff Pixel 2.0 từ LED2TOY, độ cân bằng tốt hơn nhiều so với các dòng nhập khẩu từ châu Âu mà giá thành lại hợp lý. Cảm giác roll gậy cực kỳ đầm tay, hiệu ứng led thôi miên luôn!',
-      en: 'I ordered the Dragon Staff Pixel 2.0 from LED2TOY — far better balanced than European imports and at a reasonable price. Rolling it feels incredibly solid, and the LED effects are hypnotic!',
+      vi: 'Mình đặt cây Dragon Staff Pixel 2.0 từ NCTA, độ cân bằng tốt hơn nhiều so với các dòng nhập khẩu từ châu Âu mà giá thành lại hợp lý. Cảm giác roll gậy cực kỳ đầm tay, hiệu ứng led thôi miên luôn!',
+      en: 'I ordered the Dragon Staff Pixel 2.0 from NCTA — far better balanced than European imports and at a reasonable price. Rolling it feels incredibly solid, and the LED effects are hypnotic!',
     },
     rating: 5,
     event: { vi: 'Khách Hàng Đạo Cụ Custom', en: 'Custom Prop Client' },
@@ -772,8 +772,8 @@ const RAW_TESTIMONIALS: RawTestimonial[] = [
     organization: 'Sun World Entertainment',
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop',
     content: {
-      vi: 'Phong cách làm việc cực kỳ chuyên nghiệp và đúng giờ. LED2TOY luôn mang đến những ý tưởng thị giác mới lạ giúp các show đêm của Sun World luôn giữ được sức hút đặc biệt với du khách.',
-      en: "An extremely professional and punctual working style. LED2TOY always brings fresh visual ideas that keep Sun World's night shows uniquely captivating for visitors.",
+      vi: 'Phong cách làm việc cực kỳ chuyên nghiệp và đúng giờ. NCTA luôn mang đến những ý tưởng thị giác mới lạ giúp các show đêm của Sun World luôn giữ được sức hút đặc biệt với du khách.',
+      en: "An extremely professional and punctual working style. NCTA always brings fresh visual ideas that keep Sun World's night shows uniquely captivating for visitors.",
     },
     rating: 5,
     event: { vi: 'Sun World Night Parade', en: 'Sun World Night Parade' },
@@ -824,91 +824,3 @@ export function getPartners(lang: Lang): PartnerItem[] {
   }));
 }
 
-// ---------------------------- SIMULATOR ------------------------------------
-
-export interface SimulatorMode {
-  id: string;
-  name: string;
-  colors: string[];
-  trailLength: number;
-  speed: number;
-  description: string;
-}
-
-interface RawSimulatorMode {
-  id: string;
-  name: string;
-  colors: string[];
-  trailLength: number;
-  speed: number;
-  description: L;
-}
-
-const RAW_SIMULATOR_MODES: RawSimulatorMode[] = [
-  {
-    id: 'cyber-neon',
-    name: 'Cyber Neon Vortex',
-    colors: ['#f00ac0', '#00e5ff', '#8b2fe8'],
-    trailLength: 28,
-    speed: 1.2,
-    description: {
-      vi: 'Sự pha trộn sắc màu tương lai của Cyberpunk giữa hồng magenta và xanh cyan phát sáng rực rỡ.',
-      en: 'A futuristic Cyberpunk blend of glowing magenta and cyan.',
-    },
-  },
-  {
-    id: 'fire-dragon',
-    name: 'Fire Phoenix Flame',
-    colors: ['#ff8a00', '#ff2a00', '#ffe600'],
-    trailLength: 35,
-    speed: 1.5,
-    description: {
-      vi: 'Mô phỏng ngọn lửa ma thuật bập bùng với đuôi tàn lửa vàng cam chuyển động dồn dập.',
-      en: 'A flickering magical flame with a rushing amber-gold ember tail.',
-    },
-  },
-  {
-    id: 'aurora-borealis',
-    name: 'Galactic Aurora',
-    colors: ['#00ff88', '#00e5ff', '#8b2fe8', '#f00ac0'],
-    trailLength: 40,
-    speed: 0.9,
-    description: {
-      vi: 'Dải lụa cực quang phương Bắc huyền ảo mềm mại đan xen trong bóng đêm.',
-      en: 'Soft, mystical northern-aurora ribbons weaving through the dark.',
-    },
-  },
-  {
-    id: 'hyper-strobe',
-    name: 'Hyperdrive Strobe',
-    colors: ['#ffffff', '#00e5ff', '#f00ac0'],
-    trailLength: 15,
-    speed: 2.2,
-    description: {
-      vi: 'Hiệu ứng nhấp nháy tần số cao dành cho những đoạn cao trào EDM bùng nổ.',
-      en: 'High-frequency strobing for explosive EDM peaks.',
-    },
-  },
-  {
-    id: 'rainbow-flow',
-    name: 'Full Spectrum Rainbow',
-    colors: ['#ff0055', '#ff9900', '#ffee00', '#00ff66', '#00ccff', '#9900ff'],
-    trailLength: 32,
-    speed: 1.3,
-    description: {
-      vi: '7 sắc cầu vồng mượt mà quét qua không gian 360 độ hoàn mỹ.',
-      en: 'Seven rainbow hues sweeping smoothly through a perfect 360°.',
-    },
-  },
-];
-
-export function getSimulatorModes(lang: Lang): SimulatorMode[] {
-  return RAW_SIMULATOR_MODES.map((m) => ({
-    id: m.id,
-    name: m.name,
-    colors: m.colors,
-    trailLength: m.trailLength,
-    speed: m.speed,
-    description: pick(m.description, lang),
-  }));
-}

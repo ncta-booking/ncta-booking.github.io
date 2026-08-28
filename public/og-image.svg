@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="bg" cx="30%" cy="20%" r="90%">
+      <stop offset="0%" stop-color="#1a0f2e"/>
+      <stop offset="55%" stop-color="#0a0a0f"/>
+      <stop offset="100%" stop-color="#050507"/>
+    </radialGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f00ac0"/>
+      <stop offset="55%" stop-color="#8b2fe8"/>
+      <stop offset="100%" stop-color="#00e5ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="600" cy="250" r="120" fill="none" stroke="url(#brand)" stroke-width="6" opacity="0.9"/>
+  <path d="M480 250 Q 600 110 720 250 Q 600 390 480 250" fill="none" stroke="#ff8a00" stroke-width="10" opacity="0.85"/>
+  <circle cx="600" cy="250" r="26" fill="#ff8a00"/>
+  <text x="600" y="440" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="92" font-weight="800" fill="#ffffff">NCTA</text>
+  <text x="600" y="500" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="500" fill="#cbd5e1">Nghệ thuật &amp; Đạo cụ LED trình diễn cao cấp</text>
+  <text x="600" y="548" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" fill="#94a3b8">Visual Poi · Dragon Staff · LED Hoop · Fans · Clubs</text>
+</svg>
