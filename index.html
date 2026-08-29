@@ -206,18 +206,24 @@
         var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var minVisible = reduce ? 200 : 700;
         var t0 = Date.now();
+        var dismissed = false;
         function dismiss() {
+          if (dismissed) return;
+          dismissed = true;
           setTimeout(function () {
             boot.classList.add('boot-done');
             setTimeout(function () { if (boot.parentNode) boot.parentNode.removeChild(boot); }, 600);
           }, Math.max(0, minVisible - (Date.now() - t0)));
         }
-        // Dismiss as soon as the DOM is parsed and the app module has run
-        // (React hydration) — NOT on window 'load'. `load` waits for every image
-        // and font, which needlessly kept the splash (and the already-painted
-        // page underneath it) hidden for seconds on mobile.
-        if (document.readyState === 'complete' || document.readyState === 'interactive') dismiss();
-        else document.addEventListener('DOMContentLoaded', dismiss, { once: true });
+        // React calls this the instant it has hydrated (see src/App.tsx). We wait
+        // for that — NOT `load` (waits for every image/font) and NOT
+        // `DOMContentLoaded` (fires BEFORE hydration finishes). Hydrating this
+        // large prerendered tree briefly blocks the main thread on iOS Safari;
+        // keeping the animated splash up over that window means the visitor sees
+        // the boot animation instead of a "frozen" Hero (bg canvas stalled).
+        window.__nctaDismissBoot = dismiss;
+        // Safety net: never trap the page if the bundle fails to load / hydrate.
+        setTimeout(dismiss, 8000);
       })();
     </script>
     <div id="root"></div>

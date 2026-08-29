@@ -26,10 +26,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreGear }) => {
     >
       {/* Background Graphic & Light Overlays */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {/* Large neon blurred ambient orbs */}
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#f00ac0]/15 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute top-1/3 -right-20 w-[30rem] h-[30rem] bg-[#00e5ff]/15 rounded-full blur-[140px] animate-pulse" style={{ animationDelay: '2s' }} />
-        <div className="absolute -bottom-20 left-1/3 w-[26rem] h-[26rem] bg-[#8b2fe8]/20 rounded-full blur-[130px]" />
+        {/* Large neon blurred ambient orbs. Blur radius is halved on phones and
+            the pulse is desktop-only: huge blur + a looping opacity animation is
+            very expensive to re-rasterize on iOS Safari (causes the hero to feel
+            like it stalls right after boot). */}
+        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#f00ac0]/15 rounded-full blur-[60px] sm:blur-[120px] sm:animate-pulse" />
+        <div className="absolute top-1/3 -right-20 w-[30rem] h-[30rem] bg-[#00e5ff]/15 rounded-full blur-[70px] sm:blur-[140px] sm:animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute -bottom-20 left-1/3 w-[26rem] h-[26rem] bg-[#8b2fe8]/20 rounded-full blur-[65px] sm:blur-[130px]" />
 
         {/* Ambient Dark Grid */}
         <div 

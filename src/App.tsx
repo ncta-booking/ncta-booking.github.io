@@ -1,4 +1,4 @@
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { FlowCanvas } from './components/FlowCanvas';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -26,6 +26,13 @@ export default function App() {
   const [selectedProp, setSelectedProp] = useState<LEDProp | null>(null);
   const [inquireService, setInquireService] = useState<string>('');
   const [inquireProp, setInquireProp] = useState<string>('');
+
+  // Lift the boot splash the moment React has hydrated (this effect runs after
+  // the first commit = the page is now interactive). Keeping the splash up until
+  // here hides the brief main-thread block hydration causes on iOS Safari.
+  useEffect(() => {
+    (window as unknown as { __nctaDismissBoot?: () => void }).__nctaDismissBoot?.();
+  }, []);
 
   const handleOpenBooking = () => {
     const el = document.getElementById('contact');
