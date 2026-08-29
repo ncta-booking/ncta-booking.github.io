@@ -31,17 +31,16 @@ export const FlowCanvas: React.FC = () => {
     // Users who prefer reduced motion get the static gradient background only.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    // Phones/tablets (coarse pointer) are where this lags: canvas `shadowBlur`
-    // is very expensive per draw, and a non-passive touch-trail listener blocks
-    // scrolling. So on touch devices we run a MUCH lighter ambient-only mode —
-    // fewer particles, no glow, and no pointer trail (scrolling stays smooth).
-    const isCoarse =
+    // Skip the ambient background animation entirely on phones/tablets (coarse
+    // pointer). It was the main source of jank/lag on mobile and adds little on
+    // a small screen. The <canvas> stays mounted (transparent) so hydration is
+    // untouched — we simply never start the render loop or attach listeners.
+    if (
       typeof window.matchMedia === 'function' &&
-      window.matchMedia('(pointer: coarse)').matches;
-
-    const PARTICLE_COUNT = isCoarse ? 12 : 28;
-    const USE_GLOW = !isCoarse; // shadowBlur — the #1 mobile main-thread cost
-    const MAX_TRAIL = isCoarse ? 36 : 60;
+      window.matchMedia('(pointer: coarse)').matches
+    ) {
+      return;
+    }
 
     let animationFrameId: number;
     let width = (canvas.width = window.innerWidth);
@@ -60,7 +59,7 @@ export const FlowCanvas: React.FC = () => {
     const trailPoints: TrailPoint[] = [];
 
     // Initialize floating ambient particles (kept modest for main-thread cost)
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
+    for (let i = 0; i < 28; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -73,10 +72,7 @@ export const FlowCanvas: React.FC = () => {
       });
     }
 
-    // Interactive pointer trail — auto-orbits while idle. On coarse-pointer
-    // devices we never attach a pointer listener (so `userInteracted` stays
-    // false and the gentle auto-orbit keeps running), which also means touch
-    // scrolling is never intercepted.
+    // Interactive mouse trail — auto-orbits while idle.
     let mouseX = width / 2;
     let mouseY = height / 3;
     let autoAngle = 0;
@@ -96,20 +92,17 @@ export const FlowCanvas: React.FC = () => {
         size: Math.random() * 4 + 2
       });
 
-      if (trailPoints.length > MAX_TRAIL) {
+      if (trailPoints.length > 50) {
         trailPoints.shift();
       }
     };
 
-    if (!isCoarse) {
-      // passive: never blocks the main thread / scrolling.
-      window.addEventListener('mousemove', handlePointerMove, { passive: true });
-    }
+    // passive: never blocks the main thread / scrolling.
+    window.addEventListener('mousemove', handlePointerMove, { passive: true });
 
     // Every content section paints an opaque background over this fixed canvas,
     // so it's only actually visible on the first screen (the hero). Pause the
-    // loop once the hero scrolls out of view to stop burning CPU/battery while
-    // the visitor reads the rest of the page.
+    // loop once the hero scrolls out of view to stop burning CPU while reading.
     let onScreen = true;
     let io: IntersectionObserver | null = null;
     const hero = document.getElementById('hero');
@@ -166,13 +159,12 @@ export const FlowCanvas: React.FC = () => {
           size: 3.5
         });
 
-        if (trailPoints.length > MAX_TRAIL) {
+        if (trailPoints.length > 60) {
           trailPoints.splice(0, 2);
         }
       }
 
-      // Neon glow via shadowBlur is expensive — enable it only on desktop.
-      if (USE_GLOW) ctx.shadowBlur = 12;
+      ctx.shadowBlur = 12;
 
       // Draw ambient floating particles
       for (let i = 0; i < particles.length; i++) {
@@ -189,7 +181,7 @@ export const FlowCanvas: React.FC = () => {
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         ctx.globalAlpha = p.alpha;
-        if (USE_GLOW) ctx.shadowColor = p.color;
+        ctx.shadowColor = p.color;
         ctx.fill();
       }
 
@@ -200,10 +192,8 @@ export const FlowCanvas: React.FC = () => {
           pt.alpha *= 0.94; // fade out gradually
 
           if (pt.alpha > 0.05) {
-            if (USE_GLOW) {
-              ctx.shadowBlur = 18;
-              ctx.shadowColor = pt.color;
-            }
+            ctx.shadowBlur = 18;
+            ctx.shadowColor = pt.color;
             ctx.beginPath();
             ctx.arc(pt.x, pt.y, pt.size * (pt.alpha * 1.5), 0, Math.PI * 2);
             ctx.fillStyle = pt.color;
@@ -221,7 +211,7 @@ export const FlowCanvas: React.FC = () => {
                 ctx.strokeStyle = pt.color;
                 ctx.lineWidth = pt.size * pt.alpha;
                 ctx.globalAlpha = pt.alpha * 0.6;
-                if (USE_GLOW) ctx.shadowColor = pt.color;
+                ctx.shadowColor = pt.color;
                 ctx.stroke();
               }
             }
@@ -231,14 +221,14 @@ export const FlowCanvas: React.FC = () => {
 
       // Reset global alpha & shadows
       ctx.globalAlpha = 1;
-      if (USE_GLOW) ctx.shadowBlur = 0;
+      ctx.shadowBlur = 0;
     };
 
     render();
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      if (!isCoarse) window.removeEventListener('mousemove', handlePointerMove);
+      window.removeEventListener('mousemove', handlePointerMove);
       if (io) io.disconnect();
       cancelAnimationFrame(animationFrameId);
     };
