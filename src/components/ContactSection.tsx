@@ -252,9 +252,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService, 
                 <div className="flex items-center gap-3">
                   {[
                     { name: 'Instagram', icon: Instagram, color: '#f00ac0', href: 'https://instagram.com' },
-                    { name: 'TikTok', icon: Video, color: '#00e5ff', href: 'https://tiktok.com' },
+                    { name: 'TikTok', icon: Video, color: '#00e5ff', href: 'https://www.tiktok.com/@nguoichetao' },
                     { name: 'YouTube', icon: Youtube, color: '#ff0000', href: 'https://youtube.com' },
-                    { name: 'Facebook', icon: Facebook, color: '#1877f2', href: 'https://facebook.com' },
+                    { name: 'Facebook', icon: Facebook, color: '#1877f2', href: 'https://www.facebook.com/nghiatannct' },
                   ].map((soc, idx) => (
                     <a
                       key={idx}

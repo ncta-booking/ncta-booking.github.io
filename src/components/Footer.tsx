@@ -122,9 +122,9 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-2">
               {[
                 { icon: Instagram, href: 'https://instagram.com', color: 'hover:text-[#f00ac0]' },
-                { icon: Video, href: 'https://tiktok.com', color: 'hover:text-[#00e5ff]' },
+                { icon: Video, href: 'https://www.tiktok.com/@nguoichetao', color: 'hover:text-[#00e5ff]' },
                 { icon: Youtube, href: 'https://youtube.com', color: 'hover:text-red-500' },
-                { icon: Facebook, href: 'https://facebook.com', color: 'hover:text-blue-400' },
+                { icon: Facebook, href: 'https://www.facebook.com/nghiatannct', color: 'hover:text-blue-400' },
               ].map((item, idx) => (
                 <a
                   key={idx}
