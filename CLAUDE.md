@@ -40,6 +40,15 @@ portrait at iPhone (~375–430px) and iPad (~768–834px) widths.
   `renderToString`. New sections must follow the same pattern; after touching
   this area verify `dist/index.html` still contains the full section markup
   (grep deep content, not just ids — fallback shells carry ids too).
+- **Scroll-driven hydration contract** (`App.tsx` `useScrollDrivenSections`):
+  on the client a section's chunk is NOT downloaded at hydration — the import is
+  gated until its anchor scrolls within ~600px (IntersectionObserver), then an
+  idle sweep prefetches the rest. While the gate is closed the `React.lazy`
+  stays pending and React keeps the prerendered server HTML (selective
+  hydration — depends on the `<!--$-->` Suspense boundary markers `renderToString`
+  emits; don't switch the prerender to a mode that drops them). New sections MUST
+  pass their anchor `id` as the 2nd arg to `lazySection(load, id)` — an id-less
+  section only ever hydrates during the idle sweep, never on scroll.
 - **Boot splash dismissal contract** (`index.html` inline script):
   phones/tablets (coarse pointer) reveal the page as soon as the DOM is parsed
   (`readystatechange`); desktop waits for React's hydration signal

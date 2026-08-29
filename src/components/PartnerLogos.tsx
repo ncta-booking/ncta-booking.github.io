@@ -7,7 +7,7 @@ export const PartnerLogos: React.FC = () => {
   const { t, lang } = useI18n();
   const PARTNERS_DATA = getPartners(lang);
   return (
-    <section className="py-16 bg-[#0a0a0f] border-t border-white/5 overflow-hidden">
+    <section id="partners" className="py-16 bg-[#0a0a0f] border-t border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Subtitle */}

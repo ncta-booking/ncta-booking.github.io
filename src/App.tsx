@@ -18,16 +18,45 @@ import { useI18n } from './i18n/LanguageContext';
 type SectionModule<P> = { default: React.ComponentType<P> };
 const sectionPreloads: Array<() => Promise<void>> = [];
 
+// Per-section "load gate". On the client we do NOT download a below-the-fold
+// section's chunk at hydration time — we wait until the visitor scrolls near it
+// (see useScrollDrivenSections) so the browser spends its budget on what is
+// actually on screen. While a gate stays closed the section's React.lazy is
+// pending, and React keeps the prerendered server HTML visible via selective
+// hydration — nothing blanks or flashes and the SEO markup is untouched.
+interface SectionGate {
+  id?: string;
+  open: () => void;
+}
+const sectionGates: SectionGate[] = [];
+
 /**
- * Like React.lazy, but registers a preloader the server render awaits. Once
- * preloaded (server / prerender only) the component renders synchronously, so
- * renderToString emits real content instead of Suspense fallbacks.
+ * Like React.lazy, but (1) registers a preloader the server render awaits — so
+ * renderToString emits real content, not Suspense fallbacks — and (2) gates the
+ * client import() behind a scroll-driven signal. `id` is the section's anchor,
+ * watched by an IntersectionObserver to open the gate.
  */
 function lazySection<P extends object>(
   load: () => Promise<SectionModule<P>>,
+  id?: string,
 ): React.ComponentType<P> {
   let Preloaded: React.ComponentType<P> | null = null;
-  const Lazy = lazy(load);
+  let openGate = () => {};
+  const gate = new Promise<void>((resolve) => {
+    openGate = resolve;
+  });
+  let opened = false;
+  sectionGates.push({
+    id,
+    open: () => {
+      if (opened) return;
+      opened = true;
+      openGate();
+    },
+  });
+  // Client: import() only fires once the gate opens. The server/prerender never
+  // reaches this path — Preloaded is set synchronously by preloadAppSections.
+  const Lazy = lazy(() => gate.then(() => load()));
   sectionPreloads.push(() =>
     load().then((m) => {
       Preloaded = m.default;
@@ -48,15 +77,73 @@ export function preloadAppSections(): Promise<unknown> {
   return Promise.all(sectionPreloads.map((p) => p()));
 }
 
-const PartnerLogos = lazySection(() => import('./components/PartnerLogos').then((m) => ({ default: m.PartnerLogos })));
-const AboutSection = lazySection(() => import('./components/AboutSection').then((m) => ({ default: m.AboutSection })));
-const PerformancePortfolio = lazySection(() => import('./components/PerformancePortfolio').then((m) => ({ default: m.PerformancePortfolio })));
-const GearShowcase = lazySection(() => import('./components/GearShowcase').then((m) => ({ default: m.GearShowcase })));
-const StatsSection = lazySection(() => import('./components/StatsSection').then((m) => ({ default: m.StatsSection })));
-const ServicesSection = lazySection(() => import('./components/ServicesSection').then((m) => ({ default: m.ServicesSection })));
-const FaqSection = lazySection(() => import('./components/FaqSection').then((m) => ({ default: m.FaqSection })));
-const TestimonialsSection = lazySection(() => import('./components/TestimonialsSection').then((m) => ({ default: m.TestimonialsSection })));
-const ContactSection = lazySection(() => import('./components/ContactSection').then((m) => ({ default: m.ContactSection })));
+/**
+ * Scroll-driven hydration. Each below-the-fold section downloads + hydrates only
+ * as it approaches the viewport; sections already within ~600px on mount open
+ * immediately. Once the main thread goes idle, prefetch whatever is left so deep
+ * anchor links / the contact form still work even if the visitor never scrolled
+ * there. Sections without an anchor id (e.g. the footer) rely on that idle sweep.
+ */
+function useScrollDrivenSections() {
+  useEffect(() => {
+    const openAll = () => sectionGates.forEach((g) => g.open());
+
+    if (typeof IntersectionObserver !== 'function') {
+      openAll();
+      return;
+    }
+
+    const observers: IntersectionObserver[] = [];
+    for (const gate of sectionGates) {
+      if (!gate.id) continue; // no anchor to watch — handled by the idle sweep
+      const el = document.getElementById(gate.id);
+      if (!el) {
+        gate.open();
+        continue;
+      }
+      const io = new IntersectionObserver(
+        (entries, obs) => {
+          if (entries[0].isIntersecting) {
+            gate.open();
+            obs.disconnect();
+          }
+        },
+        { rootMargin: '600px 0px' },
+      );
+      io.observe(el);
+      observers.push(io);
+    }
+
+    // Idle sweep: when the main thread is free, prefetch/hydrate the rest so
+    // nothing stays permanently dehydrated. Low priority — never competes with
+    // active scrolling/reading.
+    let idleId: number;
+    if (typeof window.requestIdleCallback === 'function') {
+      idleId = window.requestIdleCallback(openAll, { timeout: 8000 });
+    } else {
+      idleId = window.setTimeout(openAll, 4000);
+    }
+
+    return () => {
+      observers.forEach((io) => io.disconnect());
+      if (typeof window.cancelIdleCallback === 'function') {
+        window.cancelIdleCallback(idleId);
+      } else {
+        window.clearTimeout(idleId);
+      }
+    };
+  }, []);
+}
+
+const PartnerLogos = lazySection(() => import('./components/PartnerLogos').then((m) => ({ default: m.PartnerLogos })), 'partners');
+const AboutSection = lazySection(() => import('./components/AboutSection').then((m) => ({ default: m.AboutSection })), 'about');
+const PerformancePortfolio = lazySection(() => import('./components/PerformancePortfolio').then((m) => ({ default: m.PerformancePortfolio })), 'performances');
+const GearShowcase = lazySection(() => import('./components/GearShowcase').then((m) => ({ default: m.GearShowcase })), 'gear');
+const StatsSection = lazySection(() => import('./components/StatsSection').then((m) => ({ default: m.StatsSection })), 'stats');
+const ServicesSection = lazySection(() => import('./components/ServicesSection').then((m) => ({ default: m.ServicesSection })), 'services');
+const FaqSection = lazySection(() => import('./components/FaqSection').then((m) => ({ default: m.FaqSection })), 'faq');
+const TestimonialsSection = lazySection(() => import('./components/TestimonialsSection').then((m) => ({ default: m.TestimonialsSection })), 'testimonials');
+const ContactSection = lazySection(() => import('./components/ContactSection').then((m) => ({ default: m.ContactSection })), 'contact');
 const Footer = lazySection(() => import('./components/Footer').then((m) => ({ default: m.Footer })));
 
 // Interaction-only chunk — only loads when a lightbox is opened.
@@ -75,6 +162,7 @@ const SectionShell: React.FC<{ id?: string; minH?: string }> = ({ id, minH = 'mi
 
 export default function App() {
   const { t } = useI18n();
+  useScrollDrivenSections();
   const [selectedPerformance, setSelectedPerformance] = useState<PerformanceItem | null>(null);
   const [selectedProp, setSelectedProp] = useState<LEDProp | null>(null);
   const [inquireService, setInquireService] = useState<string>('');
@@ -131,7 +219,7 @@ export default function App() {
         <Hero onOpenBooking={handleOpenBooking} onExploreGear={handleExploreGear} />
 
         {/* 2. Partner & Festival Ticker */}
-        <Suspense fallback={<SectionShell minH="min-h-[200px]" />}>
+        <Suspense fallback={<SectionShell id="partners" minH="min-h-[200px]" />}>
           <PartnerLogos />
         </Suspense>
 

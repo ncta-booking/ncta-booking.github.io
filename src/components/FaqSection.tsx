@@ -23,12 +23,16 @@ export function FaqSection() {
   };
 
   return (
-    <section id="faq" className="relative z-10 mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-28">
+    <section
+      id="faq"
+      className="relative py-20 sm:py-28 bg-[#0a0a0f] border-t border-white/5 overflow-hidden"
+    >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6">
       <div className="mb-10 text-center sm:mb-14">
         <span className="inline-block rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-[#00e5ff]">
           {faq.badge}
@@ -66,6 +70,7 @@ export function FaqSection() {
             </div>
           </details>
         ))}
+      </div>
       </div>
     </section>
   );
