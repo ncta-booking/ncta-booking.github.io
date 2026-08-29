@@ -30,7 +30,13 @@ export const LANGUAGES: LanguageMeta[] = [
 
 /** Detect the best initial language from the visitor's browser. */
 export function detectBrowserLang(): Lang {
-  if (typeof navigator === 'undefined') return DEFAULT_LANG;
+  // Node 21+ ships a GLOBAL `navigator` (with language "en-US"), so
+  // `typeof navigator === 'undefined'` is no longer a reliable "am I in a real
+  // browser?" test. Gate on `window` instead — otherwise the static prerender
+  // (which runs in Node, see scripts/prerender.mjs) detects English and ships
+  // English HTML for this Vietnamese-first site, forcing a full hydration
+  // mismatch (and a slow client re-render) on every Vietnamese visitor.
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') return DEFAULT_LANG;
   const candidates = [navigator.language, ...(navigator.languages ?? [])];
   for (const raw of candidates) {
     if (!raw) continue;

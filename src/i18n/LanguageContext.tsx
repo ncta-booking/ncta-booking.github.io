@@ -34,7 +34,19 @@ function resolvePath(tree: unknown, key: string): string | undefined {
 }
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [lang, setLangState] = useState<Lang>(getInitialLang);
+  // Start from the default language so the server-prerendered HTML and the
+  // client's FIRST render agree — this keeps hydration clean (React reuses the
+  // prerendered DOM instead of throwing it away and re-rendering the whole tree,
+  // which was the cause of sections appearing only after a long delay on mobile).
+  // The visitor's real preference (?lang → localStorage → browser) is applied
+  // right after mount as a normal, cheap React update.
+  const [lang, setLangState] = useState<Lang>(DEFAULT_LANG);
+
+  // Upgrade to the visitor's preferred language once hydration is done.
+  useEffect(() => {
+    const preferred = getInitialLang();
+    if (preferred !== DEFAULT_LANG) setLangState(preferred);
+  }, []);
 
   // Keep <html lang="…"> in sync for accessibility & SEO.
   useEffect(() => {
