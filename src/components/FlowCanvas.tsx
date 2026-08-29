@@ -31,6 +31,18 @@ export const FlowCanvas: React.FC = () => {
     // Users who prefer reduced motion get the static gradient background only.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
+    // Phones/tablets (coarse pointer) are where this lags: canvas `shadowBlur`
+    // is very expensive per draw, and a non-passive touch-trail listener blocks
+    // scrolling. So on touch devices we run a MUCH lighter ambient-only mode —
+    // fewer particles, no glow, and no pointer trail (scrolling stays smooth).
+    const isCoarse =
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(pointer: coarse)').matches;
+
+    const PARTICLE_COUNT = isCoarse ? 12 : 28;
+    const USE_GLOW = !isCoarse; // shadowBlur — the #1 mobile main-thread cost
+    const MAX_TRAIL = isCoarse ? 36 : 60;
+
     let animationFrameId: number;
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
@@ -48,7 +60,7 @@ export const FlowCanvas: React.FC = () => {
     const trailPoints: TrailPoint[] = [];
 
     // Initialize floating ambient particles (kept modest for main-thread cost)
-    for (let i = 0; i < 28; i++) {
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -61,20 +73,20 @@ export const FlowCanvas: React.FC = () => {
       });
     }
 
-    // Interactive mouse / touch trail
+    // Interactive pointer trail — auto-orbits while idle. On coarse-pointer
+    // devices we never attach a pointer listener (so `userInteracted` stays
+    // false and the gentle auto-orbit keeps running), which also means touch
+    // scrolling is never intercepted.
     let mouseX = width / 2;
     let mouseY = height / 3;
     let autoAngle = 0;
     let userInteracted = false;
 
-    const handlePointerMove = (e: MouseEvent | TouchEvent) => {
+    const handlePointerMove = (e: MouseEvent) => {
       userInteracted = true;
-      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-      mouseX = clientX;
-      mouseY = clientY;
+      mouseX = e.clientX;
+      mouseY = e.clientY;
 
-      // Add trail point
       const randomColor = colors[Math.floor(Math.random() * colors.length)];
       trailPoints.push({
         x: mouseX,
@@ -84,21 +96,40 @@ export const FlowCanvas: React.FC = () => {
         size: Math.random() * 4 + 2
       });
 
-      if (trailPoints.length > 50) {
+      if (trailPoints.length > MAX_TRAIL) {
         trailPoints.shift();
       }
     };
 
-    window.addEventListener('mousemove', handlePointerMove);
-    window.addEventListener('touchmove', handlePointerMove);
+    if (!isCoarse) {
+      // passive: never blocks the main thread / scrolling.
+      window.addEventListener('mousemove', handlePointerMove, { passive: true });
+    }
 
-    // Cap to ~30fps and pause when the tab is hidden to cut main-thread work.
+    // Every content section paints an opaque background over this fixed canvas,
+    // so it's only actually visible on the first screen (the hero). Pause the
+    // loop once the hero scrolls out of view to stop burning CPU/battery while
+    // the visitor reads the rest of the page.
+    let onScreen = true;
+    let io: IntersectionObserver | null = null;
+    const hero = document.getElementById('hero');
+    if (hero && typeof IntersectionObserver === 'function') {
+      io = new IntersectionObserver(
+        ([entry]) => {
+          onScreen = entry.isIntersecting;
+        },
+        { threshold: 0 },
+      );
+      io.observe(hero);
+    }
+
+    // Cap to ~30fps and pause when the tab is hidden or the hero is off-screen.
     const FRAME_MS = 1000 / 30;
     let lastDraw = 0;
 
     const render = (now = 0) => {
       animationFrameId = requestAnimationFrame(render);
-      if (document.hidden || now - lastDraw < FRAME_MS) return;
+      if (document.hidden || !onScreen || now - lastDraw < FRAME_MS) return;
       lastDraw = now;
 
       // Create a smooth trailing dark fade
@@ -135,10 +166,13 @@ export const FlowCanvas: React.FC = () => {
           size: 3.5
         });
 
-        if (trailPoints.length > 60) {
+        if (trailPoints.length > MAX_TRAIL) {
           trailPoints.splice(0, 2);
         }
       }
+
+      // Neon glow via shadowBlur is expensive — enable it only on desktop.
+      if (USE_GLOW) ctx.shadowBlur = 12;
 
       // Draw ambient floating particles
       for (let i = 0; i < particles.length; i++) {
@@ -155,8 +189,7 @@ export const FlowCanvas: React.FC = () => {
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         ctx.globalAlpha = p.alpha;
-        ctx.shadowBlur = 12;
-        ctx.shadowColor = p.color;
+        if (USE_GLOW) ctx.shadowColor = p.color;
         ctx.fill();
       }
 
@@ -167,12 +200,14 @@ export const FlowCanvas: React.FC = () => {
           pt.alpha *= 0.94; // fade out gradually
 
           if (pt.alpha > 0.05) {
+            if (USE_GLOW) {
+              ctx.shadowBlur = 18;
+              ctx.shadowColor = pt.color;
+            }
             ctx.beginPath();
             ctx.arc(pt.x, pt.y, pt.size * (pt.alpha * 1.5), 0, Math.PI * 2);
             ctx.fillStyle = pt.color;
             ctx.globalAlpha = pt.alpha;
-            ctx.shadowBlur = 18;
-            ctx.shadowColor = pt.color;
             ctx.fill();
 
             // Connect lines between close points for ribbon flow effect
@@ -186,8 +221,7 @@ export const FlowCanvas: React.FC = () => {
                 ctx.strokeStyle = pt.color;
                 ctx.lineWidth = pt.size * pt.alpha;
                 ctx.globalAlpha = pt.alpha * 0.6;
-                ctx.shadowBlur = 15;
-                ctx.shadowColor = pt.color;
+                if (USE_GLOW) ctx.shadowColor = pt.color;
                 ctx.stroke();
               }
             }
@@ -197,15 +231,15 @@ export const FlowCanvas: React.FC = () => {
 
       // Reset global alpha & shadows
       ctx.globalAlpha = 1;
-      ctx.shadowBlur = 0;
+      if (USE_GLOW) ctx.shadowBlur = 0;
     };
 
     render();
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handlePointerMove);
-      window.removeEventListener('touchmove', handlePointerMove);
+      if (!isCoarse) window.removeEventListener('mousemove', handlePointerMove);
+      if (io) io.disconnect();
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

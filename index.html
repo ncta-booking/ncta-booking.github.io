@@ -204,7 +204,7 @@
         }
         // Keep the splash up long enough to be seen, then fade + remove it.
         var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var minVisible = reduce ? 250 : 1500;
+        var minVisible = reduce ? 200 : 700;
         var t0 = Date.now();
         function dismiss() {
           setTimeout(function () {
@@ -212,8 +212,12 @@
             setTimeout(function () { if (boot.parentNode) boot.parentNode.removeChild(boot); }, 600);
           }, Math.max(0, minVisible - (Date.now() - t0)));
         }
-        if (document.readyState === 'complete') dismiss();
-        else window.addEventListener('load', dismiss, { once: true });
+        // Dismiss as soon as the DOM is parsed and the app module has run
+        // (React hydration) — NOT on window 'load'. `load` waits for every image
+        // and font, which needlessly kept the splash (and the already-painted
+        // page underneath it) hidden for seconds on mobile.
+        if (document.readyState === 'complete' || document.readyState === 'interactive') dismiss();
+        else document.addEventListener('DOMContentLoaded', dismiss, { once: true });
       })();
     </script>
     <div id="root"></div>
