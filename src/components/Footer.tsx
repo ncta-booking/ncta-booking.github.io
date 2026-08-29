@@ -1,5 +1,6 @@
 import React from 'react';
-import { Zap, Heart, Sparkles, ArrowUp, Instagram, Youtube, Facebook, Video, Mail, Globe } from 'lucide-react';
+import { Zap, Heart, Sparkles, ArrowUp, Instagram, Youtube, Facebook, Mail, Globe } from 'lucide-react';
+import { TikTokIcon } from './BrandIcons';
 import { useI18n } from '../i18n/LanguageContext';
 
 export const Footer: React.FC = () => {
@@ -122,7 +123,7 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-2">
               {[
                 { icon: Instagram, href: 'https://instagram.com', color: 'hover:text-[#f00ac0]' },
-                { icon: Video, href: 'https://www.tiktok.com/@nguoichetao', color: 'hover:text-[#00e5ff]' },
+                { icon: TikTokIcon, href: 'https://www.tiktok.com/@nguoichetao', color: 'hover:text-[#00e5ff]' },
                 { icon: Youtube, href: 'https://youtube.com', color: 'hover:text-red-500' },
                 { icon: Facebook, href: 'https://www.facebook.com/nghiatannct', color: 'hover:text-blue-400' },
               ].map((item, idx) => (

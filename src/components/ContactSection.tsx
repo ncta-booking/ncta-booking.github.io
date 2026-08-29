@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Send, PhoneCall, Mail, MapPin, Sparkles, CheckCircle2, MessageSquare, MessageCircle, Instagram, Youtube, Facebook, Video, Share2 } from 'lucide-react';
+import { Send, PhoneCall, Mail, MapPin, Sparkles, CheckCircle2, MessageSquare, MessageCircle, Instagram, Youtube, Facebook, Share2 } from 'lucide-react';
+import { TikTokIcon } from './BrandIcons';
 import { useI18n } from '../i18n/LanguageContext';
 
 // NCTA hotline — the same number is used for calls, WhatsApp and Zalo.
@@ -252,7 +253,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService, 
                 <div className="flex items-center gap-3">
                   {[
                     { name: 'Instagram', icon: Instagram, color: '#f00ac0', href: 'https://instagram.com' },
-                    { name: 'TikTok', icon: Video, color: '#00e5ff', href: 'https://www.tiktok.com/@nguoichetao' },
+                    { name: 'TikTok', icon: TikTokIcon, color: '#00e5ff', href: 'https://www.tiktok.com/@nguoichetao' },
                     { name: 'YouTube', icon: Youtube, color: '#ff0000', href: 'https://youtube.com' },
                     { name: 'Facebook', icon: Facebook, color: '#1877f2', href: 'https://www.facebook.com/nghiatannct' },
                   ].map((soc, idx) => (
