@@ -2,6 +2,7 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { FlowCanvas } from './components/FlowCanvas';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { FloatingActions } from './components/FloatingActions';
 import { LEDProp, PerformanceItem, ServiceItem } from './types';
 import { useI18n } from './i18n/LanguageContext';
 
@@ -185,6 +186,9 @@ export default function App() {
       <Suspense fallback={null}>
         <Footer />
       </Suspense>
+
+      {/* Floating helpers: back-to-top (left) + contact FAB (right) */}
+      <FloatingActions />
 
       {/* Modal Popup for Performances & Props Details (lazy — only loads on open) */}
       <Suspense fallback={null}>

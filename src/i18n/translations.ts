@@ -277,6 +277,14 @@ const vi = {
     viewsLabel: 'Lượt xem mạng xã hội',
     viewsCaption: 'Trên YouTube, TikTok & Instagram',
   },
+  fab: {
+    contact: 'Liên hệ',
+    close: 'Đóng',
+    call: 'Gọi Hotline',
+    zalo: 'Nhắn Zalo',
+    whatsapp: 'Chat WhatsApp',
+    backToTop: 'Lên đầu trang',
+  },
 };
 
 const en: typeof vi = {
@@ -549,6 +557,14 @@ const en: typeof vi = {
     studentsCaption: 'Trained through our workshops',
     viewsLabel: 'Social views',
     viewsCaption: 'Across YouTube, TikTok & Instagram',
+  },
+  fab: {
+    contact: 'Contact',
+    close: 'Close',
+    call: 'Call hotline',
+    zalo: 'Chat on Zalo',
+    whatsapp: 'Chat on WhatsApp',
+    backToTop: 'Back to top',
   },
 };
 
