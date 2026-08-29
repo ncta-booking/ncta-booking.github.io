@@ -8,7 +8,7 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreGear }) => {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const scrollToPerformances = () => {
     const el = document.getElementById('performances');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -61,8 +61,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreGear }) => {
           <span className="text-purple-400 text-xs">• {t('hero.badgeStudio')}</span>
         </div>
 
-        {/* Main Display Headline */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-black tracking-tight leading-[1.15] max-w-5xl py-6 sm:py-8 lg:py-10">
+        {/* Main Display Headline. Vietnamese stacks diacritics (Ế, Ộ, Ổ, Á…)
+            that get clipped by the tight leading at the smaller mobile/tablet
+            padding, so give the VI title extra vertical room (py-10 at every
+            breakpoint). English keeps the tighter responsive padding. */}
+        <h1
+          className={`text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-black tracking-tight leading-[1.15] max-w-5xl ${
+            lang === 'vi' ? 'py-10' : 'py-6 sm:py-8 lg:py-10'
+          }`}
+        >
           <span className="block text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400">
             {t('hero.titleLine1')}
           </span>
