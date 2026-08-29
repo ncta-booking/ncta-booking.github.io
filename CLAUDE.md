@@ -30,17 +30,43 @@ portrait at iPhone (~375–430px) and iPad (~768–834px) widths.
 
 ## Performance (landing page / Lighthouse)
 
+- **Measure only against the production build** (`npm run build` then
+  `npx vite preview`). `npm run dev` (port 3000) has NO prerender and serves
+  dev React — Lighthouse numbers there are meaningless (LCP inflated 5–10×).
+- **Section code-splitting contract** (`App.tsx`): every below-the-fold section
+  is a `lazySection()` chunk wrapped in `<Suspense>` with a `SectionShell`
+  fallback that keeps the anchor `id`. The static prerender stays complete
+  because `entry-server.tsx` awaits `preloadAppSections()` before
+  `renderToString`. New sections must follow the same pattern; after touching
+  this area verify `dist/index.html` still contains the full section markup
+  (grep deep content, not just ids — fallback shells carry ids too).
+- **Boot splash dismissal contract** (`index.html` inline script):
+  phones/tablets (coarse pointer) reveal the page as soon as the DOM is parsed
+  (`readystatechange`); desktop waits for React's hydration signal
+  (`window.__nctaDismissBoot`, called from an `App.tsx` mount effect). Safety
+  timeouts guard both. Do not re-tie dismissal to window `load`.
+- **Mobile hydration is deferred to idle** (`main.tsx`, `requestIdleCallback`
+  on coarse pointer) — the prerendered HTML is readable immediately; hydration
+  must never block first scroll. Language changes wrap `setLangState` in
+  `startTransition` (`LanguageContext.tsx`) so not-yet-hydrated Suspense
+  boundaries keep their server HTML instead of client re-rendering.
+- Below-fold sections also get `content-visibility: auto` via
+  `main > section:nth-of-type(n + 2)` in `index.css` — keep new sections as
+  direct `<section>` children of `<main>`.
 - Canvas `requestAnimationFrame` loops must NOT run unconditionally: throttle
   (~30fps for ambient FX), skip drawing when `document.hidden`, pause when the
   canvas is off-screen (IntersectionObserver), and bail entirely on
-  `prefers-reduced-motion`. See `FlowCanvas.tsx`.
-- Below-the-fold / interaction-only components are `React.lazy` + `Suspense`
-  (e.g. `LightboxModal` in `App.tsx`). Give lazy sections a sized placeholder
-  (keep the `id` anchor) to avoid layout shift.
-- Images: `loading="lazy"` + `decoding="async"` on all non-LCP images; keep the
-  aspect-ratio wrappers so there is no CLS. `preconnect` to external image/font
-  hosts in `index.html`; load Google Fonts non-render-blocking (`media=print`
-  swap trick + `<noscript>` fallback).
+  `prefers-reduced-motion`. On coarse-pointer devices the ambient canvas is
+  disabled outright. See `FlowCanvas.tsx`.
+- Scroll handlers must never read layout (`offsetTop`/`offsetHeight`) per
+  event — use passive + rAF-throttled listeners and IntersectionObserver
+  instead (see `Navbar.tsx`).
+- Images: `loading="lazy"` + `decoding="async"` on all non-LCP images; Unsplash
+  images add `srcSet={unsplashSrcSet(url)}` + `sizes` (`src/utils/images.ts`)
+  so phones download ~480px files. Keep the aspect-ratio wrappers so there is
+  no CLS. `preconnect` to external image/font hosts in `index.html`; load
+  Google Fonts non-render-blocking (`media=print` swap trick + `<noscript>`
+  fallback).
 
 ## Internationalization
 

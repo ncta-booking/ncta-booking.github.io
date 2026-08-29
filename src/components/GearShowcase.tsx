@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { getProps } from '../data/mockData';
 import { useI18n } from '../i18n/LanguageContext';
 import { LEDProp, PropCategory } from '../types';
+import { unsplashSrcSet } from '../utils/images';
 import { Zap, Cpu, Battery, Radio, Shield, Sparkles, ArrowRight, Check, SlidersHorizontal, Flame } from 'lucide-react';
 
 interface GearShowcaseProps {
@@ -97,6 +98,8 @@ export const GearShowcase: React.FC<GearShowcaseProps> = ({ onSelectProp, onInqu
                 <div className="relative aspect-[16/11] overflow-hidden bg-black/40">
                   <img
                     src={prop.image}
+                    srcSet={unsplashSrcSet(prop.image)}
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                     alt={prop.name}
                     className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 brightness-95 group-hover:brightness-105"
                     loading="lazy"

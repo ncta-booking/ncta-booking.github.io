@@ -20,7 +20,9 @@ const vite = await createServer({
 let exitCode = 0;
 try {
   const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
-  const appHtml = render();
+  // render() is async: it preloads the lazy section chunks first so the HTML
+  // contains every section in full (no Suspense fallbacks).
+  const appHtml = await render();
   const indexFile = resolve(outDir, 'index.html');
   const template = readFileSync(indexFile, 'utf-8');
 

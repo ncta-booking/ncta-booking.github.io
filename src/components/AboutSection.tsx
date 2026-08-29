@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { getStats } from '../data/mockData';
 import { useI18n } from '../i18n/LanguageContext';
 import { CountUp } from './CountUp';
+import { unsplashSrcSet } from '../utils/images';
 import { Award, Flame, Cpu, Eye, CheckCircle2, Sparkles, UserCheck, HeartHandshake } from 'lucide-react';
 
 interface AboutSectionProps {
@@ -70,6 +71,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => 
               <div className="relative rounded-2xl overflow-hidden bg-[#12121c] border border-white/10 aspect-[4/5] shadow-2xl">
                 <img
                   src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1000&auto=format&fit=crop"
+                  srcSet={unsplashSrcSet('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1000&auto=format&fit=crop')}
+                  sizes="(min-width: 640px) 448px, 100vw"
                   alt="Nghệ sĩ biểu diễn LED Poi trong đêm"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"

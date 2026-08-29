@@ -52,6 +52,19 @@
   html[lang="vi"] :is(h1, h2, h3, .font-display):not(.brand-logo) {
     font-family: 'Exo 2', 'Be Vietnam Pro', system-ui, sans-serif;
   }
+
+  /*
+   * Below-the-fold sections: let the browser SKIP layout & paint entirely
+   * until the visitor scrolls near them ("load tới đâu, render tới đó" at the
+   * rendering level — a large first-paint / hydration win on phones).
+   * `auto` remembers the real size after the first render; 900px is only the
+   * pre-render estimate. Browsers without content-visibility simply ignore
+   * this. The hero (first section) is excluded on purpose.
+   */
+  main > section:nth-of-type(n + 2) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
 }
 
 /* Custom glowing effects */

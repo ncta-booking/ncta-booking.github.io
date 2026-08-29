@@ -204,7 +204,8 @@
         }
         // Keep the splash up long enough to be seen, then fade + remove it.
         var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var minVisible = reduce ? 200 : 700;
+        var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+        var minVisible = reduce ? 200 : (coarse ? 350 : 700);
         var t0 = Date.now();
         var dismissed = false;
         function dismiss() {
@@ -215,15 +216,29 @@
             setTimeout(function () { if (boot.parentNode) boot.parentNode.removeChild(boot); }, 600);
           }, Math.max(0, minVisible - (Date.now() - t0)));
         }
-        // React calls this the instant it has hydrated (see src/App.tsx). We wait
-        // for that — NOT `load` (waits for every image/font) and NOT
-        // `DOMContentLoaded` (fires BEFORE hydration finishes). Hydrating this
-        // large prerendered tree briefly blocks the main thread on iOS Safari;
-        // keeping the animated splash up over that window means the visitor sees
-        // the boot animation instead of a "frozen" Hero (bg canvas stalled).
+        // Dismissal contract (keep in sync with src/main.tsx + src/App.tsx):
+        // - PHONES/TABLETS (coarse pointer): the body is fully prerendered static
+        //   HTML and hydration is deferred to idle, so reveal the page the moment
+        //   the DOM is parsed (readyState leaves 'loading'). This does NOT wait
+        //   for the JS bundle — content shows seconds earlier on slow networks.
+        // - DESKTOP: wait for React's hydration signal (window.__nctaDismissBoot,
+        //   called from src/App.tsx) so the bg canvas never appears frozen
+        //   mid-hydration. Safety net below in case the bundle fails.
         window.__nctaDismissBoot = dismiss;
+        if (coarse) {
+          if (document.readyState !== 'loading') {
+            dismiss();
+          } else {
+            document.addEventListener('readystatechange', function onRs() {
+              if (document.readyState !== 'loading') {
+                document.removeEventListener('readystatechange', onRs);
+                dismiss();
+              }
+            });
+          }
+        }
         // Safety net: never trap the page if the bundle fails to load / hydrate.
-        setTimeout(dismiss, 8000);
+        setTimeout(dismiss, coarse ? 4000 : 8000);
       })();
     </script>
     <div id="root"></div>

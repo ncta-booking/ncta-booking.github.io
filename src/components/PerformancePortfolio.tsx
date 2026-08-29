@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { getPerformances } from '../data/mockData';
 import { useI18n } from '../i18n/LanguageContext';
 import { PerformanceCategory, PerformanceItem } from '../types';
+import { unsplashSrcSet } from '../utils/images';
 import { Play, Calendar, MapPin, Sparkles, Clock, Layers, ArrowUpRight, Film } from 'lucide-react';
 
 interface PerformancePortfolioProps {
@@ -79,6 +80,8 @@ export const PerformancePortfolio: React.FC<PerformancePortfolioProps> = ({ onSe
               <div className="relative aspect-[16/10] overflow-hidden bg-black">
                 <img
                   src={perf.image}
+                  srcSet={unsplashSrcSet(perf.image)}
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                   alt={perf.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-90 group-hover:brightness-100"
                   loading="lazy"

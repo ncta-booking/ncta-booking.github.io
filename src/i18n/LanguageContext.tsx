@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useContext, useCallback, useEffect, useMemo, useState, startTransition } from 'react';
 import { DEFAULT_LANG, STORAGE_KEY, detectBrowserLang, type Lang } from './config';
 import { translations } from './translations';
 
@@ -43,9 +43,14 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [lang, setLangState] = useState<Lang>(DEFAULT_LANG);
 
   // Upgrade to the visitor's preferred language once hydration is done.
+  // startTransition: the below-fold sections hydrate lazily (Suspense chunks);
+  // a transition lets React finish hydrating them with the server HTML instead
+  // of discarding it and client-rendering from scratch.
   useEffect(() => {
     const preferred = getInitialLang();
-    if (preferred !== DEFAULT_LANG) setLangState(preferred);
+    if (preferred !== DEFAULT_LANG) {
+      startTransition(() => setLangState(preferred));
+    }
   }, []);
 
   // Keep <html lang="…"> in sync for accessibility & SEO.
@@ -56,7 +61,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, [lang]);
 
   const setLang = useCallback((next: Lang) => {
-    setLangState(next);
+    // Transition for the same reason as the post-mount upgrade above: never
+    // force not-yet-hydrated Suspense boundaries into a client re-render.
+    startTransition(() => setLangState(next));
     if (typeof window !== 'undefined') {
       window.localStorage.setItem(STORAGE_KEY, next);
     }

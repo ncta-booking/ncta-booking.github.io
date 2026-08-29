@@ -13,28 +13,61 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
+  // Scroll styling: passive + rAF-throttled, and it only reads `scrollY`
+  // (never offsetTop/offsetHeight — those force a layout on every scroll event
+  // and were a big source of scroll jank on phones).
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setIsScrolled(window.scrollY > 40);
+        ticking = false;
+      });
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-      const sections = ['hero', 'about', 'performances', 'gear', 'stats', 'services', 'testimonials', 'contact'];
-      const scrollPosition = window.scrollY + 200;
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
+  // Active-section highlight via IntersectionObserver — zero layout reads.
+  // The rootMargin band marks a section active while it crosses the upper
+  // quarter of the viewport. Sections mount lazily (Suspense chunks), so
+  // retry-observe until every id exists.
+  useEffect(() => {
+    if (typeof IntersectionObserver !== 'function') return;
+    const ids = ['hero', 'about', 'performances', 'gear', 'stats', 'services', 'testimonials', 'contact'];
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        }
+      },
+      { rootMargin: '-20% 0px -70% 0px' },
+    );
+    const seen = new Set<string>();
+    const observeAll = () => {
+      for (const id of ids) {
+        if (seen.has(id)) continue;
+        const el = document.getElementById(id);
         if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section);
-            break;
-          }
+          seen.add(id);
+          io.observe(el);
         }
       }
+      return seen.size === ids.length;
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    let timer: number | undefined;
+    if (!observeAll()) {
+      timer = window.setInterval(() => {
+        if (observeAll() && timer !== undefined) window.clearInterval(timer);
+      }, 1000);
+    }
+    return () => {
+      if (timer !== undefined) window.clearInterval(timer);
+      io.disconnect();
+    };
   }, []);
 
   const navLinks = [
