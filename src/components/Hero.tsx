@@ -61,13 +61,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreGear }) => {
           <span className="text-purple-400 text-xs">• {t('hero.badgeStudio')}</span>
         </div>
 
-        {/* Main Display Headline. Vietnamese stacks diacritics (Ế, Ộ, Ổ, Á…)
-            that get clipped by the tight leading at the smaller mobile/tablet
-            padding, so give the VI title extra vertical room (py-10 at every
-            breakpoint). English keeps the tighter responsive padding. */}
+        {/* Main Display Headline. Vietnamese stacks diacritics (Ể = Ê + hook,
+            Ộ, Ổ…) that rise above the tight line box. With `bg-clip-text` the
+            gradient only paints inside that box, so the top of a stacked mark
+            gets cut off — and the two rows sit too close. Give the VI title a
+            looser line-height (more row spacing + room for the marks) plus
+            extra vertical padding. English keeps the tight display leading. */}
         <h1
-          className={`text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-black tracking-tight leading-[1.15] max-w-5xl ${
-            lang === 'vi' ? 'py-10' : 'py-6 sm:py-8 lg:py-10'
+          className={`text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-black tracking-tight max-w-5xl ${
+            lang === 'vi' ? 'leading-[1.4] py-10' : 'leading-[1.15] py-6 sm:py-8 lg:py-10'
           }`}
         >
           <span className="block text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400">
