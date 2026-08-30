@@ -75,4 +75,49 @@ export interface PartnerItem {
   category: string;
   logoText: string;
   accent: string;
+  /** Path under /logos — placeholder vector wordmark, swap for the real brand file. */
+  logoSrc: string;
+}
+
+// ---------------------------------------------------------------------------
+// Long-form show articles — the standalone pages built at /show/<id>/.
+// See src/data/showArticles.ts for the content and scripts/prerender.mjs for
+// the static HTML generation.
+// ---------------------------------------------------------------------------
+
+export interface ArticleSection {
+  heading: string;
+  body: string[];
+}
+
+export interface ArticleGalleryImage {
+  src: string;
+  caption: string;
+}
+
+export interface ArticleFact {
+  label: string;
+  value: string;
+}
+
+export interface ArticleCredit {
+  role: string;
+  name: string;
+}
+
+export interface ShowArticle {
+  /** Same id as the matching PerformanceItem — also the URL slug. */
+  id: string;
+  /** ISO date, used for <lastmod> in the sitemap and Article JSON-LD. */
+  publishedAt: string;
+  readMinutes: number;
+  /** Opening summary paragraph, shown under the title and used as meta description. */
+  lead: string;
+  /** YouTube video id. Leave empty and the video block is not rendered. */
+  youtubeId?: string;
+  sections: ArticleSection[];
+  gallery: ArticleGalleryImage[];
+  facts: ArticleFact[];
+  credits: ArticleCredit[];
+  quote?: { text: string; author: string };
 }

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 80" width="260" height="80" role="img" aria-label="SUN WORLD">
+  <g fill="none" stroke="#ff8a00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="40" cy="40" r="13"/>
+    <path d="M40 14v-6M40 72v-6M14 40H8M72 40h-6M22 22l-4-4M62 62l4 4M62 18l4-4M18 62l-4 4"/>
+  </g>
+  <text x="82" y="44" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="24" font-weight="900" letter-spacing="1.5" fill="#ffffff">SUN WORLD</text>
+  <text x="83" y="60" font-family="Consolas, Menlo, monospace" font-size="10" letter-spacing="3.2" fill="#ff8a00" opacity="0.85">ENTERTAINMENT</text>
+</svg>

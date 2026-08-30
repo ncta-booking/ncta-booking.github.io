@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { LEDProp, PerformanceItem } from '../types';
 import { useI18n } from '../i18n/LanguageContext';
-import { X, Sparkles, Cpu, Battery, Radio, Shield, MapPin, Clock, Calendar, CheckCircle2, ArrowRight } from 'lucide-react';
+import { hasShowArticle } from '../data/showArticleIds';
+import { X, Cpu, MapPin, Clock, Calendar, CheckCircle2, ArrowRight, FileText } from 'lucide-react';
 
 interface LightboxModalProps {
   performance: PerformanceItem | null;
@@ -115,13 +116,24 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
             </div>
 
             {/* Action */}
-            <div className="pt-4 border-t border-white/10 flex items-center justify-end gap-3">
+            <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-end gap-3">
               <button
                 onClick={onClose}
                 className="px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-mono text-slate-300"
               >
                 {t('lightbox.close')}
               </button>
+              {/* Full article — a real standalone page at /show/<id>/, so this
+                  is a plain link (shareable, crawlable), not a state change. */}
+              {hasShowArticle(performance.id) && (
+                <a
+                  href={`/show/${performance.id}/`}
+                  className="px-5 py-2.5 rounded-xl border border-[#00e5ff]/40 bg-[#00e5ff]/10 text-xs font-bold font-display uppercase tracking-wider text-[#00e5ff] hover:bg-[#00e5ff]/20 transition-colors inline-flex items-center gap-2"
+                >
+                  <FileText className="w-4 h-4" />
+                  <span>{t('article.readFull')}</span>
+                </a>
+              )}
               <button
                 onClick={() => {
                   onClose();

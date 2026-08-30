@@ -1,11 +1,15 @@
 import React from 'react';
 import { getPartners } from '../data/mockData';
 import { useI18n } from '../i18n/LanguageContext';
-import { Sparkles, Trophy } from 'lucide-react';
+import { Trophy } from 'lucide-react';
 
 export const PartnerLogos: React.FC = () => {
   const { t, lang } = useI18n();
   const PARTNERS_DATA = getPartners(lang);
+  // Two identical tracks side by side; the CSS animation shifts -50% so the
+  // seam is invisible. aria-hidden on the clone keeps it out of the a11y tree.
+  const marqueeTrack = [...PARTNERS_DATA, ...PARTNERS_DATA];
+
   return (
     <section id="partners" className="py-16 bg-[#0a0a0f] border-t border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,7 +45,35 @@ export const PartnerLogos: React.FC = () => {
             </div>
           ))}
         </div>
+      </div>
 
+      {/* Brand logo strip — edge-to-edge auto-scrolling marquee */}
+      <div className="mt-12 pt-10 border-t border-white/5">
+        <p className="text-center text-[10px] font-mono uppercase tracking-[0.3em] text-slate-500 mb-7">
+          {t('partners.logosCaption')}
+        </p>
+
+        <div className="logo-marquee-mask w-full max-w-full overflow-hidden">
+          <div className="flex w-max animate-logo-marquee items-center gap-6 sm:gap-10">
+            {marqueeTrack.map((partner, idx) => (
+              <div
+                key={`${partner.name}-${idx}`}
+                aria-hidden={idx >= PARTNERS_DATA.length}
+                className="group shrink-0 flex h-20 w-40 sm:h-24 sm:w-52 items-center justify-center rounded-2xl border border-white/5 bg-[#12121c]/50 px-5 transition-colors duration-300 hover:border-white/20"
+              >
+                <img
+                  src={partner.logoSrc}
+                  alt={partner.name}
+                  width={260}
+                  height={80}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-auto w-full max-w-full opacity-45 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

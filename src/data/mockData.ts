@@ -563,6 +563,11 @@ export function getPerformances(lang: Lang): PerformanceItem[] {
   }));
 }
 
+/** Single performance by id — used by the standalone /show/<id>/ pages. */
+export function getPerformanceById(id: string, lang: Lang): PerformanceItem | null {
+  return getPerformances(lang).find((p) => p.id === id) ?? null;
+}
+
 // ------------------------------ SERVICES -----------------------------------
 
 interface RawService {
@@ -802,17 +807,18 @@ interface RawPartner {
   category: L;
   logoText: string;
   accent: string;
+  logoSrc: string;
 }
 
 const RAW_PARTNERS: RawPartner[] = [
-  { name: 'SUN GROUP', category: { vi: 'Giải Trí & Du Lịch', en: 'Entertainment & Tourism' }, logoText: 'SUN WORLD', accent: '#ff8a00' },
-  { name: 'RAVOLUTION', category: { vi: 'EDM Festival', en: 'EDM Festival' }, logoText: 'RAVOLUTION', accent: '#00e5ff' },
-  { name: 'EPIZODE', category: { vi: 'Beach Festival', en: 'Beach Festival' }, logoText: 'EPIZODE FEST', accent: '#f00ac0' },
-  { name: 'HEINEKEN', category: { vi: 'Countdown Show', en: 'Countdown Show' }, logoText: 'HEINEKEN LIVE', accent: '#00ff88' },
-  { name: 'VINFAST', category: { vi: 'Launch Event', en: 'Launch Event' }, logoText: 'VINFAST', accent: '#00e5ff' },
-  { name: 'TIGER CRYSTAL', category: { vi: 'Rave Stage', en: 'Rave Stage' }, logoText: 'TIGER CRYSTAL', accent: '#00e5ff' },
-  { name: 'YAMAHA MOTOR', category: { vi: 'Motor Show', en: 'Motor Show' }, logoText: 'YAMAHA EXPO', accent: '#f00ac0' },
-  { name: 'SAIGON FLOW', category: { vi: 'Arts Fest', en: 'Arts Fest' }, logoText: 'VN FLOW ARTS', accent: '#8b2fe8' },
+  { name: 'SUN GROUP', category: { vi: 'Giải Trí & Du Lịch', en: 'Entertainment & Tourism' }, logoText: 'SUN WORLD', accent: '#ff8a00', logoSrc: '/logos/sun-world.svg' },
+  { name: 'RAVOLUTION', category: { vi: 'EDM Festival', en: 'EDM Festival' }, logoText: 'RAVOLUTION', accent: '#00e5ff', logoSrc: '/logos/ravolution.svg' },
+  { name: 'EPIZODE', category: { vi: 'Beach Festival', en: 'Beach Festival' }, logoText: 'EPIZODE FEST', accent: '#f00ac0', logoSrc: '/logos/epizode.svg' },
+  { name: 'HEINEKEN', category: { vi: 'Countdown Show', en: 'Countdown Show' }, logoText: 'HEINEKEN LIVE', accent: '#00ff88', logoSrc: '/logos/heineken-live.svg' },
+  { name: 'VINFAST', category: { vi: 'Launch Event', en: 'Launch Event' }, logoText: 'VINFAST', accent: '#00e5ff', logoSrc: '/logos/vinfast.svg' },
+  { name: 'TIGER CRYSTAL', category: { vi: 'Rave Stage', en: 'Rave Stage' }, logoText: 'TIGER CRYSTAL', accent: '#00e5ff', logoSrc: '/logos/tiger-crystal.svg' },
+  { name: 'YAMAHA MOTOR', category: { vi: 'Motor Show', en: 'Motor Show' }, logoText: 'YAMAHA EXPO', accent: '#f00ac0', logoSrc: '/logos/yamaha-expo.svg' },
+  { name: 'SAIGON FLOW', category: { vi: 'Arts Fest', en: 'Arts Fest' }, logoText: 'VN FLOW ARTS', accent: '#8b2fe8', logoSrc: '/logos/vn-flow-arts.svg' },
 ];
 
 export function getPartners(lang: Lang): PartnerItem[] {
@@ -821,6 +827,7 @@ export function getPartners(lang: Lang): PartnerItem[] {
     category: pick(p.category, lang),
     logoText: p.logoText,
     accent: p.accent,
+    logoSrc: p.logoSrc,
   }));
 }
 

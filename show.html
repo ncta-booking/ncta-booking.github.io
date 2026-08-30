@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="vi" class="scroll-smooth dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Search Console site verification -->
+    <meta name="google-site-verification" content="zqKikWea4ZKAzPtKxrmoKpd2Niz_fWZX-IfjPX0ANUU" />
+    <!--SHOW_HEAD-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Speed up the external image CDN (LCP / gallery images) -->
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    <!-- Load fonts without blocking first render (display=swap avoids invisible text) -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Exo+2:wght@500..900&family=Orbitron:wght@500;700;800;900&family=Space+Grotesk:wght@500;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    >
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Exo+2:wght@500..900&family=Orbitron:wght@500;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    </noscript>
+    <!-- Favicon as a real crawlable file (data-URI favicons are ignored by
+         Google Search results). SVG scales for every tab size. -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.svg" />
+    <!-- Boot / loading splash styles. Inline so the screen paints INSTANTLY —
+         before the JS bundle downloads and React hydrates the prerendered HTML
+         (Tailwind lives in the JS-loaded index.css, so this uses plain CSS).
+         The <noscript> rule hides it for JS-free crawlers so it can never trap
+         the prerendered content underneath. -->
+    <style id="boot-style">
+      #boot-screen{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;background-color:#0a0a0f;background-image:linear-gradient(rgba(0,229,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.045) 1px,transparent 1px);background-size:42px 42px;opacity:1;transition:opacity .55s ease;}
+      #boot-screen.boot-done{opacity:0;pointer-events:none;}
+      .boot-card{position:relative;width:min(92vw,420px);padding:34px 28px 30px;border-radius:22px;text-align:center;background:rgba(16,16,24,.72);border:1px solid rgba(255,255,255,.08);box-shadow:0 0 0 1px rgba(0,229,255,.06),0 20px 60px rgba(0,0,0,.6),0 0 90px rgba(240,10,192,.12);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
+      .boot-head{display:flex;align-items:center;justify-content:center;gap:13px;margin-bottom:22px;}
+      .boot-logo{width:48px;height:48px;flex:none;animation:boot-pulse 2.4s ease-in-out infinite;}
+      .boot-brand{text-align:left;line-height:1;}
+      .boot-name{font-family:'Orbitron','Space Grotesk',sans-serif;font-weight:800;font-size:26px;letter-spacing:1px;color:#f00ac0;text-shadow:0 0 16px rgba(240,10,192,.6);}
+      .boot-tag{margin-top:6px;font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600;letter-spacing:4px;color:#00e5ff;text-shadow:0 0 10px rgba(0,229,255,.45);}
+      .boot-matrix{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;width:fit-content;margin:0 auto 22px;padding:20px 22px;border-radius:14px;background:#07070b;box-shadow:inset 0 0 30px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.04);}
+      .boot-matrix i{width:14px;height:14px;border-radius:50%;background:#151522;animation:boot-blink 1.4s ease-in-out infinite;animation-delay:var(--d,0s);}
+      .boot-status{font-family:'Orbitron','Space Grotesk',sans-serif;font-size:11px;font-weight:700;letter-spacing:5px;color:#f00ac0;text-shadow:0 0 12px rgba(240,10,192,.5);margin-bottom:11px;}
+      .boot-desc{max-width:300px;margin:0 auto 22px;font-size:13.5px;line-height:1.55;color:#94a3b8;}
+      .boot-bar{height:4px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden;}
+      .boot-bar-fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#f00ac0,#8b2fe8,#00e5ff);box-shadow:0 0 12px rgba(0,229,255,.55);animation:boot-fill 1.5s cubic-bezier(.4,0,.2,1) forwards;}
+      @keyframes boot-blink{0%,100%{background:#151522;box-shadow:none;}42%{background:#00e5ff;box-shadow:0 0 8px #00e5ff,0 0 14px rgba(0,229,255,.55);}72%{background:#f00ac0;box-shadow:0 0 8px #f00ac0,0 0 14px rgba(240,10,192,.5);}}
+      @keyframes boot-fill{0%{width:0;}100%{width:100%;}}
+      @keyframes boot-pulse{0%,100%{filter:drop-shadow(0 0 8px rgba(0,229,255,.4));}50%{filter:drop-shadow(0 0 16px rgba(240,10,192,.7));}}
+      @media (prefers-reduced-motion:reduce){#boot-screen *{animation:none!important;}.boot-bar-fill{width:100%;}.boot-matrix i{background:#00e5ff;box-shadow:0 0 6px rgba(0,229,255,.5);}}
+    </style>
+    <noscript><style>#boot-screen{display:none!important;}</style></noscript>
+  </head>
+  <body class="bg-[#0a0a0f] text-slate-100 antialiased selection:bg-[#f00ac0] selection:text-white min-h-screen overflow-x-hidden font-sans">
+    <!-- Instant boot splash (built + removed by the inline script below after
+         window load). Sits above #root and never touches it, so the prerender
+         step and React hydration are unaffected. -->
+    <div id="boot-screen" role="status" aria-label="NCTA">
+      <div class="boot-card">
+        <div class="boot-head">
+          <svg class="boot-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="50" cy="50" r="45" fill="#0a0a0f" />
+            <circle cx="50" cy="50" r="38" stroke="#00e5ff" stroke-width="4" fill="none" />
+            <path d="M30 50 Q 50 20 70 50 Q 50 80 30 50" stroke="#f00ac0" stroke-width="6" fill="none" />
+            <circle cx="50" cy="50" r="8" fill="#ff8a00" />
+          </svg>
+          <div class="boot-brand">
+            <div class="boot-name">NCTA</div>
+            <div class="boot-tag">FLOW ART · LED PROPS</div>
+          </div>
+        </div>
+        <div class="boot-matrix" id="boot-matrix" aria-hidden="true"></div>
+        <div class="boot-status">SYSTEM BOOT</div>
+        <p class="boot-desc" id="boot-desc">Đang khởi động sân khấu ánh sáng và đồng bộ nội dung NCTA.</p>
+        <div class="boot-bar"><div class="boot-bar-fill"></div></div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var boot = document.getElementById('boot-screen');
+        if (!boot) return;
+        // Build the 40-dot LED matrix with a diagonal ripple (delay by row+col).
+        var m = document.getElementById('boot-matrix');
+        if (m) {
+          for (var i = 0; i < 40; i++) {
+            var dot = document.createElement('i');
+            dot.style.setProperty('--d', ((((i / 8) | 0) + (i % 8)) % 8 * 0.1).toFixed(2) + 's');
+            m.appendChild(dot);
+          }
+        }
+        // Resolve the language the SAME way src/i18n/LanguageContext does, so
+        // the splash matches the app: ?lang= URL param → localStorage → browser.
+        // (STORAGE_KEY mirrors src/i18n/config.ts — keep both in sync.)
+        function resolveLang() {
+          try {
+            var q = new URLSearchParams(location.search).get('lang');
+            if (q === 'vi' || q === 'en') return q;
+            var stored = localStorage.getItem('ncta-lang');
+            if (stored === 'vi' || stored === 'en') return stored;
+          } catch (e) { /* private mode / blocked storage — fall through */ }
+          var cands = [navigator.language].concat(navigator.languages || []);
+          for (var j = 0; j < cands.length; j++) {
+            var c = (cands[j] || '').toLowerCase();
+            if (c.indexOf('vi') === 0) return 'vi';
+            if (c.indexOf('en') === 0) return 'en';
+          }
+          return 'vi';
+        }
+        // Markup defaults to Vietnamese; only swap when English wins.
+        if (resolveLang() === 'en') {
+          var d = document.getElementById('boot-desc');
+          if (d) d.textContent = 'Booting the light stage and syncing NCTA content.';
+          boot.setAttribute('aria-label', 'Loading NCTA');
+        }
+        // Keep the splash up long enough to be seen, then fade + remove it.
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+        var minVisible = reduce ? 200 : (coarse ? 350 : 700);
+        var t0 = Date.now();
+        var dismissed = false;
+        function dismiss() {
+          if (dismissed) return;
+          dismissed = true;
+          setTimeout(function () {
+            boot.classList.add('boot-done');
+            setTimeout(function () { if (boot.parentNode) boot.parentNode.removeChild(boot); }, 600);
+          }, Math.max(0, minVisible - (Date.now() - t0)));
+        }
+        // Dismissal contract (keep in sync with src/main.tsx + src/App.tsx):
+        // - PHONES/TABLETS (coarse pointer): the body is fully prerendered static
+        //   HTML and hydration is deferred to idle, so reveal the page the moment
+        //   the DOM is parsed (readyState leaves 'loading'). This does NOT wait
+        //   for the JS bundle — content shows seconds earlier on slow networks.
+        // - DESKTOP: wait for React's hydration signal (window.__nctaDismissBoot,
+        //   called from src/App.tsx) so the bg canvas never appears frozen
+        //   mid-hydration. Safety net below in case the bundle fails.
+        window.__nctaDismissBoot = dismiss;
+        if (coarse) {
+          if (document.readyState !== 'loading') {
+            dismiss();
+          } else {
+            document.addEventListener('readystatechange', function onRs() {
+              if (document.readyState !== 'loading') {
+                document.removeEventListener('readystatechange', onRs);
+                dismiss();
+              }
+            });
+          }
+        }
+        // Safety net: never trap the page if the bundle fails to load / hydrate.
+        setTimeout(dismiss, coarse ? 4000 : 8000);
+      })();
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main-article.tsx"></script>
+  </body>
+</html>
+

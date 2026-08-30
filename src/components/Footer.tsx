@@ -3,7 +3,16 @@ import { Zap, Heart, Sparkles, ArrowUp, Instagram, Youtube, Facebook, Mail, Glob
 import { TikTokIcon } from './BrandIcons';
 import { useI18n } from '../i18n/LanguageContext';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  /**
+   * Prefix for the in-page anchors. Empty on the single-page site (`#about`);
+   * the standalone /show/<id>/ pages pass "/" so the links point back at the
+   * home page (`/#about`) instead of at nothing.
+   */
+  hrefBase?: string;
+}
+
+export const Footer: React.FC<FooterProps> = ({ hrefBase = '' }) => {
   const { t } = useI18n();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -47,27 +56,27 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5 text-xs font-medium">
               <li>
-                <a href="#hero" className="hover:text-[#00e5ff] transition-colors">
+                <a href={`${hrefBase}#hero`} className="hover:text-[#00e5ff] transition-colors">
                   {t('footer.linkHome')}
                 </a>
               </li>
               <li>
-                <a href="#about" className="hover:text-[#00e5ff] transition-colors">
+                <a href={`${hrefBase}#about`} className="hover:text-[#00e5ff] transition-colors">
                   {t('footer.linkAbout')}
                 </a>
               </li>
               <li>
-                <a href="#performances" className="hover:text-[#00e5ff] transition-colors">
+                <a href={`${hrefBase}#performances`} className="hover:text-[#00e5ff] transition-colors">
                   {t('footer.linkPortfolio')}
                 </a>
               </li>
               <li>
-                <a href="#gear" className="hover:text-[#00e5ff] transition-colors">
+                <a href={`${hrefBase}#gear`} className="hover:text-[#00e5ff] transition-colors">
                   {t('footer.linkGear')}
                 </a>
               </li>
               <li>
-                <a href="#stats" className="hover:text-[#00e5ff] transition-colors">
+                <a href={`${hrefBase}#stats`} className="hover:text-[#00e5ff] transition-colors">
                   {t('nav.stats')}
                 </a>
               </li>
@@ -81,27 +90,27 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5 text-xs font-medium">
               <li>
-                <a href="#gear" className="hover:text-[#f00ac0] transition-colors">
+                <a href={`${hrefBase}#gear`} className="hover:text-[#f00ac0] transition-colors">
                   Visual Pixel Poi HD
                 </a>
               </li>
               <li>
-                <a href="#gear" className="hover:text-[#f00ac0] transition-colors">
+                <a href={`${hrefBase}#gear`} className="hover:text-[#f00ac0] transition-colors">
                   Smart Dragon Staff
                 </a>
               </li>
               <li>
-                <a href="#gear" className="hover:text-[#f00ac0] transition-colors">
+                <a href={`${hrefBase}#gear`} className="hover:text-[#f00ac0] transition-colors">
                   HyperLoop LED Hoop
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-[#f00ac0] transition-colors">
+                <a href={`${hrefBase}#services`} className="hover:text-[#f00ac0] transition-colors">
                   {t('footer.linkPerformEvent')}
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-[#f00ac0] transition-colors">
+                <a href={`${hrefBase}#services`} className="hover:text-[#f00ac0] transition-colors">
                   {t('footer.linkCustom')}
                 </a>
               </li>

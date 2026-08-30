@@ -77,6 +77,31 @@ portrait at iPhone (~375–430px) and iPad (~768–834px) widths.
   Google Fonts non-render-blocking (`media=print` swap trick + `<noscript>`
   fallback).
 
+## Show article pages (multi-page build)
+
+Every performance also has a **standalone static page** at `/show/<id>/`,
+linked from the portfolio card and the summary popup ("Chi tiết").
+
+- The build is a 2-input Vite MPA: `index.html` + `show.html` (a template whose
+  head carries a `<!--SHOW_HEAD-->` marker). `scripts/prerender.mjs` stamps one
+  copy per show into `dist/show/<id>/index.html` with per-show title,
+  description, canonical, OG tags and Article/BreadcrumbList JSON-LD, then
+  deletes `dist/show.html` so the bare template is never indexed.
+- The same script **regenerates `dist/sitemap.xml`** (home + every show URL).
+  Do not hand-add show URLs to `public/sitemap.xml`.
+- `npm run dev` has no prerender, so a middleware in `vite.config.ts` rewrites
+  `/show/<id>/` → `show.html?show=<id>`; `resolveShowId()` in `ArticleApp.tsx`
+  reads either form.
+- **Adding an article touches two files**: the content in
+  `src/data/showArticles.ts` AND the slug in `src/data/showArticleIds.ts`.
+  The split keeps the landing page from downloading article prose it never
+  shows — never import `showArticles.ts` from a landing-page component. A
+  DEV-only check warns when the two lists drift.
+- Article pages are intentionally NOT `lazySection()`-split (one continuous
+  read) and skip `FlowCanvas`. They use `ArticleNavbar` because the home
+  `Navbar` scroll-spies over landing sections that do not exist here, and
+  `<Footer hrefBase="/">` so its anchors point back at the home page.
+
 ## Internationalization
 
 - Bilingual **Vietnamese (default) + English** via a lightweight custom i18n

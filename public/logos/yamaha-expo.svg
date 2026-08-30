@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 80" width="260" height="80" role="img" aria-label="YAMAHA">
+  <g fill="none" stroke="#f00ac0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="40" cy="40" r="28"/>
+    <path d="M40 20v34M40 20l-14 24M40 20l14 24"/>
+  </g>
+  <text x="82" y="44" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="24" font-weight="900" letter-spacing="1.5" fill="#ffffff">YAMAHA</text>
+  <text x="83" y="60" font-family="Consolas, Menlo, monospace" font-size="10" letter-spacing="3.2" fill="#f00ac0" opacity="0.85">MOTOR SHOW</text>
+</svg>

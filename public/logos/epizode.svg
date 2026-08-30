@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 80" width="260" height="80" role="img" aria-label="EPIZODE">
+  <g fill="none" stroke="#f00ac0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 32c8-9 14-9 22 0s14 9 22 0 14-9 8-4"/>
+    <path d="M14 46c8-9 14-9 22 0s14 9 22 0"/>
+    <path d="M14 60c8-9 14-9 22 0s14 9 22 0"/>
+  </g>
+  <text x="82" y="44" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="24" font-weight="900" letter-spacing="1.5" fill="#ffffff">EPIZODE</text>
+  <text x="83" y="60" font-family="Consolas, Menlo, monospace" font-size="10" letter-spacing="3.2" fill="#f00ac0" opacity="0.85">BEACH FESTIVAL</text>
+</svg>

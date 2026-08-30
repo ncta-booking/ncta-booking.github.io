@@ -129,6 +129,33 @@
   animation: float-slow 6s ease-in-out infinite;
 }
 
+/* Partner logo marquee: two identical tracks translate -50% for a seamless
+   loop. Kept CSS-only (no rAF) and paused for reduced-motion users. */
+@keyframes logo-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-logo-marquee {
+  animation: logo-marquee 38s linear infinite;
+  will-change: transform;
+}
+
+.logo-marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-logo-marquee {
+    animation: none;
+  }
+}
+
 /* Horizontal swipe strips (e.g. gear category selector): hide the scrollbar
    but keep touch/trackpad scrolling. Used with `overflow-x-auto`. */
 .scrollbar-none {

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { getPerformances } from '../data/mockData';
+import { hasShowArticle } from '../data/showArticleIds';
 import { useI18n } from '../i18n/LanguageContext';
 import { PerformanceCategory, PerformanceItem } from '../types';
 import { unsplashSrcSet } from '../utils/images';
-import { Play, Calendar, MapPin, Sparkles, Clock, Layers, ArrowUpRight, Film } from 'lucide-react';
+import { Play, Calendar, MapPin, Clock, ArrowUpRight, FileText, Film } from 'lucide-react';
 
 interface PerformancePortfolioProps {
   onSelectPerformance: (perf: PerformanceItem) => void;
@@ -150,6 +151,19 @@ export const PerformancePortfolio: React.FC<PerformancePortfolioProps> = ({ onSe
                     <ArrowUpRight className="w-4 h-4" />
                   </div>
                 </div>
+
+                {/* Full-article link. The whole card already opens the summary
+                    popup, so stop the click bubbling up to that handler. */}
+                {hasShowArticle(perf.id) && (
+                  <a
+                    href={`/show/${perf.id}/`}
+                    onClick={(e) => e.stopPropagation()}
+                    className="mt-3 inline-flex items-center justify-center gap-1.5 w-full rounded-xl border border-white/10 bg-white/5 py-2.5 text-[11px] font-mono uppercase tracking-widest text-slate-300 transition-all hover:border-[#00e5ff]/50 hover:bg-[#00e5ff]/10 hover:text-white"
+                  >
+                    <FileText className="w-3.5 h-3.5" />
+                    <span>{t('article.readFullLong')}</span>
+                  </a>
+                )}
 
               </div>
 

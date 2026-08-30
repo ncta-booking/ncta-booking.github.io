@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 80" width="260" height="80" role="img" aria-label="HEINEKEN">
+  <g fill="none" stroke="#00ff88" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M40 12l8.6 17.4L68 32.2 54 45.8l3.3 19.2L40 55.9 22.7 65l3.3-19.2L12 32.2l19.4-2.8z"/>
+  </g>
+  <text x="82" y="44" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="24" font-weight="900" letter-spacing="1.5" fill="#ffffff">HEINEKEN</text>
+  <text x="83" y="60" font-family="Consolas, Menlo, monospace" font-size="10" letter-spacing="3.2" fill="#00ff88" opacity="0.85">COUNTDOWN SHOW</text>
+</svg>

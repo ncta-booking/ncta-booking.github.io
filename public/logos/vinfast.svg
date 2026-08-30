@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 80" width="260" height="80" role="img" aria-label="VINFAST">
+  <g fill="none" stroke="#00e5ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 18l26 46 26-46"/>
+    <path d="M26 18l14 25 14-25" opacity="0.5"/>
+  </g>
+  <text x="82" y="44" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="24" font-weight="900" letter-spacing="1.5" fill="#ffffff">VINFAST</text>
+  <text x="83" y="60" font-family="Consolas, Menlo, monospace" font-size="10" letter-spacing="3.2" fill="#00e5ff" opacity="0.85">LAUNCH EVENT</text>
+</svg>
